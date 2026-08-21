@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quattro — Direction C: Bloom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#07070A; --black-2:#0D0D12; --black-3:#131318;
+    --violet:#6C4FE0; --violet-deep:#4A35A8; --violet-text:#9B85F5; --teal:#2BC4B0;
+    --off:#F1F0F4; --text-dim:#9393A8; --text-dim-2:#8888A0;
+    --line:rgba(241,240,244,0.09);
+  }
+  *{box-sizing:border-box;}
+  ::selection{background:var(--violet);color:#07070A;}
+  body{margin:0;font-family:'Hanken Grotesk',sans-serif;background:var(--black);color:var(--off);-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  a:focus-visible, .btn:focus-visible{outline:2px solid var(--violet);outline-offset:2px;}
+  h1,h2,h3{font-family:'Satoshi',sans-serif;font-weight:700;margin:0;line-height:1.04;letter-spacing:-0.015em;}
+  p{margin:0;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+  .tag{font-family:'Hanken Grotesk',sans-serif;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Satoshi',sans-serif;font-weight:700;font-size:15px;padding:15px 30px;border-radius:999px;border:1.5px solid transparent;transition:transform .15s ease, box-shadow .2s ease, border-color .15s ease;}
+  .btn-violet{background:linear-gradient(135deg,var(--violet),var(--violet-deep));color:#FFFFFF;box-shadow:0 8px 20px -6px rgba(0,0,0,0.55);}
+  .btn-violet:hover{transform:translateY(-1px);box-shadow:0 12px 24px -6px rgba(0,0,0,0.6);}
+  .btn-out{border-color:rgba(241,240,244,0.28);color:var(--off);}
+  .btn-out:hover{border-color:var(--off);}
+  ::-webkit-scrollbar{width:12px;}
+  ::-webkit-scrollbar-track{background:var(--black);}
+  ::-webkit-scrollbar-thumb{background:#232330;border:3px solid var(--black);border-radius:8px;}
+  .spectrum{height:2px;background:linear-gradient(90deg,var(--violet) 0%,var(--teal) 33%,#E8B23D 66%,#E0567A 100%);}
+</style>
+</head>
+<body>
+<!--
+THESIS: one glowing signal-lens is the whole product, seen once in the hero and again as the two facets that read it.
+OWN-WORLD: true black, ambient violet bloom (soft radial glow, not flat neon fill), a teal secondary reserved for Quattro's own detection, a spectrum hairline standing for "the full signal", pill CTAs earned by a curated glossy-chrome reference (site3).
+STORY: the visitor sees the lens, understands it reads two things at once, then sees the same lens's proof in a real program table.
+FIRST VIEWPORT: centered lens graphic upper-right, headline + copy + pill CTA left, on true black.
+FORM: ambient-glow + glass/chrome material adapted from curated references (site2, site3), explicitly honoring pinned taste over the category's generic-neon caution; direction C of 4.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+
+  <nav style="position:sticky;top:0;z-index:6;background:rgba(7,7,10,0.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);">
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:78px;">
+      <div style="display:flex;align-items:center;gap:9px;">
+        <span style="width:9px;height:9px;border-radius:50%;background:var(--violet);"></span>
+        <div style="font-family:'Satoshi',sans-serif;font-weight:900;font-size:19px;letter-spacing:-0.01em;">Quattro</div>
+      </div>
+      <div style="display:flex;gap:30px;font-size:14px;color:var(--text-dim);">
+        <a href="#">Coverage</a><a href="#">How we underwrite</a><a href="#">For brokers</a><a href="#">Contact</a>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <span class="btn btn-out" style="padding:9px 20px;font-size:13px;">Agent login</span>
+        <span class="btn btn-violet" style="padding:9px 20px;font-size:13px;box-shadow:none;">Underwriter login</span>
+      </div>
+    </div>
+  </nav>
+
+  <section style="position:relative;padding:100px 0 90px;overflow:hidden;">
+    <div class="wrap" style="position:relative;display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;">
+      <div>
+        <h1 style="font-size:50px;margin-bottom:22px;">Comprehensive insurance and risk management for <span style="color:var(--violet);">long-term care facilities.</span></h1>
+        <p style="font-size:16px;line-height:1.7;color:var(--text-dim);max-width:520px;margin-bottom:32px;">Quattro is an AI-native managing general agency built for long-term care facilities. We underwrite professional liability and general liability insurance using granular, facility-level data, and our proprietary AI provides ongoing risk management alerts to help mitigate incidents before they occur.</p>
+        <div style="display:flex;gap:14px;">
+          <span class="btn btn-violet">Talk to our team</span>
+          <span class="btn btn-out">I'm a broker</span>
+        </div>
+      </div>
+      <div style="position:relative;height:340px;display:flex;align-items:center;justify-content:center;">
+        <div style="position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 38% 32%, rgba(108,79,224,0.4), rgba(108,79,224,0.05) 60%, transparent 72%);filter:blur(4px);"></div>
+        <svg width="320" height="320" viewBox="0 0 320 320" style="position:relative;">
+          <circle cx="160" cy="160" r="140" fill="none" stroke="rgba(241,240,244,0.08)" stroke-width="1"/>
+          <circle cx="160" cy="160" r="108" fill="none" stroke="rgba(241,240,244,0.1)" stroke-width="1"/>
+          <circle cx="160" cy="160" r="76" fill="url(#lensGrad)" opacity="0.9"/>
+          <circle cx="160" cy="160" r="76" fill="none" stroke="var(--violet)" stroke-width="1.5" opacity="0.7"/>
+          <path d="M 84 160 A 76 76 0 0 1 236 160" fill="none" stroke="var(--teal)" stroke-width="2"/>
+          <defs>
+            <radialGradient id="lensGrad" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#2A2440"/>
+              <stop offset="100%" stop-color="#0D0D12"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:88px 0;background:var(--black-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+      <div>
+        <h2 style="font-size:30px;margin-bottom:18px;">Class-average pricing can't see your building.</h2>
+        <p style="font-size:15px;line-height:1.7;color:var(--text-dim);margin-bottom:36px;">Most long-term care liability is priced off state and facility-type averages, re-rated once a year, with no way to reward a well-run facility, and hard caps on the coverage that matters most when a claim gets serious.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:12px;align-items:baseline;"><span style="width:6px;height:6px;background:var(--violet);flex:none;border-radius:50%;"></span><p style="font-size:14px;color:var(--text-dim);"><b style="color:var(--off);">A&amp;B:</b> sublimited well below the underlying limit.</p></div>
+          <div style="display:flex;gap:12px;align-items:baseline;"><span style="width:6px;height:6px;background:var(--violet);flex:none;border-radius:50%;"></span><p style="font-size:14px;color:var(--text-dim);"><b style="color:var(--off);">SAM:</b> the most restricted line, despite rising exposure.</p></div>
+          <div style="display:flex;gap:12px;align-items:baseline;"><span style="width:6px;height:6px;background:var(--violet);flex:none;border-radius:50%;"></span><p style="font-size:14px;color:var(--text-dim);"><b style="color:var(--off);">W&amp;E:</b> treated as a footnote, not a core exposure.</p></div>
+        </div>
+      </div>
+      <div style="position:relative;display:flex;justify-content:center;">
+        <svg width="280" height="280" viewBox="0 0 280 280">
+          <circle cx="140" cy="140" r="110" fill="none" stroke="rgba(241,240,244,0.1)" stroke-width="1"/>
+          <path d="M 30 140 A 110 110 0 0 1 250 140" fill="none" stroke="#E0567A" stroke-width="2" stroke-dasharray="3 4"/>
+          <circle cx="45" cy="176" r="4" fill="#E0567A"/>
+          <circle cx="235" cy="176" r="4" fill="var(--teal)"/>
+        </svg>
+        <div style="position:absolute;left:0;bottom:14px;">
+          <div style="font-family:'Satoshi',sans-serif;font-weight:700;font-size:22px;color:#E0567A;">$25K–$100K</div>
+          <div class="tag" style="color:var(--text-dim-2);margin-top:2px;">typical cap</div>
+        </div>
+        <div style="position:absolute;right:0;bottom:14px;text-align:right;">
+          <div style="font-family:'Satoshi',sans-serif;font-weight:700;font-size:22px;color:var(--teal);">Full limits</div>
+          <div class="tag" style="color:var(--text-dim-2);margin-top:2px;">Quattro</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:90px 0;">
+    <div class="wrap">
+      <h2 style="font-size:30px;max-width:600px;margin-bottom:14px;">Two signals already inside your building.</h2>
+      <p style="font-size:13px;color:var(--text-dim-2);margin-bottom:40px;">One lens, read in two halves.</p>
+      <div style="border:1px solid var(--line);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;background:var(--black-2);">
+        <div style="padding:36px;border-right:1px solid var(--line);">
+          <svg width="120" height="56" viewBox="0 0 120 56" style="margin-bottom:20px;"><polyline points="0,40 14,38 26,42 38,18 50,34 62,40 74,12 86,38 98,34 110,38 120,36" fill="none" stroke="var(--teal)" stroke-width="2"/></svg>
+          <h3 style="font-size:20px;margin-bottom:12px;"><span style="color:var(--teal);">Clinical signal</span> — what your care records already show</h3>
+          <p style="font-size:14px;line-height:1.6;color:var(--text-dim);">Incident documentation, care planning, staffing patterns and clinical outcomes, read over the 90 days preceding your application.</p>
+        </div>
+        <div style="padding:36px;">
+          <svg width="120" height="56" viewBox="0 0 120 56" style="margin-bottom:20px;"><rect x="0" y="24" width="10" height="32" fill="var(--violet)"/><rect x="16" y="10" width="10" height="46" fill="var(--violet)"/><rect x="32" y="30" width="10" height="26" fill="var(--violet)"/><rect x="48" y="2" width="10" height="54" fill="var(--violet)"/><rect x="64" y="20" width="10" height="36" fill="var(--violet)"/><rect x="80" y="34" width="10" height="22" fill="var(--violet)"/></svg>
+          <h3 style="font-size:20px;margin-bottom:12px;"><span style="color:var(--violet-text);">Observed signal</span> — what's happening on the floor, today</h3>
+          <p style="font-size:14px;line-height:1.6;color:var(--text-dim);">Fall response times, supervision patterns and safety events from monitoring already installed, over that same 90-day window.</p>
+        </div>
+      </div>
+      <div class="spectrum" style="margin-top:2px;"></div>
+      <p style="font-size:12px;letter-spacing:0.02em;color:var(--text-dim-2);margin-top:10px;font-style:italic;">Reading the full signal, clinical and observed, together.</p>
+    </div>
+  </section>
+
+  <section style="padding:88px 0;background:var(--black-2);border-top:1px solid var(--line);">
+    <div class="wrap">
+      <h2 style="font-size:30px;max-width:600px;margin-bottom:36px;">General &amp; professional liability, built for long-term care.</h2>
+      <div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:16px 4px;border-top:1px solid var(--line);font-size:14px;"><div style="color:var(--text-dim);">General liability</div><div style="text-align:right;">$1M each occurrence / $2M aggregate</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:16px 4px;border-top:1px solid var(--line);font-size:14px;"><div style="color:var(--text-dim);">Professional liability</div><div style="text-align:right;">$1M each claim / $3M aggregate</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:16px 4px;border-top:1px solid var(--line);font-size:14px;align-items:center;"><div style="color:var(--text-dim);display:flex;align-items:center;gap:8px;"><span style="width:5px;height:5px;border-radius:50%;background:var(--teal);"></span>Assault and battery</div><div style="text-align:right;color:var(--teal);font-weight:600;">Full limits, no sublimit</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:16px 4px;border-top:1px solid var(--line);font-size:14px;align-items:center;"><div style="color:var(--text-dim);display:flex;align-items:center;gap:8px;"><span style="width:5px;height:5px;border-radius:50%;background:var(--teal);"></span>Sexual abuse and molestation</div><div style="text-align:right;color:var(--teal);font-weight:600;">Full limits, no sublimit</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:16px 4px;border-top:1px solid var(--line);font-size:14px;align-items:center;"><div style="color:var(--text-dim);display:flex;align-items:center;gap:8px;"><span style="width:5px;height:5px;border-radius:50%;background:var(--teal);"></span>Wandering and elopement</div><div style="text-align:right;color:var(--teal);font-weight:600;">Full limits, no sublimit</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:16px 4px;border-top:1px solid var(--line);font-size:14px;"><div style="color:var(--text-dim);">Defense costs</div><div style="text-align:right;">Outside the limit of liability</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:16px 4px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:14px;"><div style="color:var(--text-dim);">Deductible options</div><div style="text-align:right;">$2,500 to $25,000 per claim</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:var(--black);padding:52px 0;">
+    <div class="wrap">
+      <div style="font-family:'Satoshi',sans-serif;font-weight:900;font-size:18px;margin-bottom:14px;">Quattro</div>
+      <p style="font-size:12px;line-height:1.6;color:var(--text-dim-2);max-width:760px;">Quattro Insurance Services is an insurance managing general agency in formation. Coverage described on this site is a program under development, subject to underwriting review and confirmation of carrier and reinsurance capacity.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

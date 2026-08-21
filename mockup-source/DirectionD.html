@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quattro — Direction D: Overlook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=boska@500,600,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mist-1:#242C27; --mist-2:#3E483F; --mist-3:#545B50;
+    --parchment:#E7E6D8; --parchment-2:#DEDCC9;
+    --copper:#A6573E; --copper-deep:#7C3F2B;
+    --forest-text:#33392F; --text-soft:#5B6259;
+    --line:rgba(51,57,47,0.16);
+  }
+  *{box-sizing:border-box;}
+  ::selection{background:var(--copper);color:var(--parchment);}
+  body{margin:0;font-family:'Spectral',serif;background:var(--parchment);color:var(--forest-text);}
+  a{color:inherit;text-decoration:none;}
+  a:focus-visible, .btn:focus-visible{outline:2px solid var(--copper);outline-offset:2px;}
+  h1,h2,h3{font-family:'Boska',serif;font-weight:600;margin:0;line-height:1.12;}
+  p{margin:0;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 40px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Spectral',serif;font-weight:600;font-size:15px;padding:14px 30px;border:1px solid;border-radius:0;transition:background .15s,color .15s;}
+  .btn-line-light{border-color:rgba(246,241,228,0.5);color:var(--parchment);}
+  .btn-line-light:hover{border-color:var(--parchment);background:rgba(246,241,228,0.08);}
+  .btn-copper{border-color:var(--copper);color:#FFFFFF;background:var(--copper);}
+  .btn-copper:hover{background:var(--copper-deep);border-color:var(--copper-deep);}
+  .btn-line-dark{border-color:var(--forest-text);color:var(--forest-text);}
+  .btn-line-dark:hover{border-color:var(--copper);color:var(--copper);}
+  ::-webkit-scrollbar{width:12px;}
+  ::-webkit-scrollbar-track{background:var(--parchment);}
+  ::-webkit-scrollbar-thumb{background:rgba(51,57,47,0.25);border:3px solid var(--parchment);border-radius:8px;}
+  .leader{flex:1;border-bottom:1px dotted rgba(51,57,47,0.4);margin:0 12px 5px;min-width:24px;}
+</style>
+</head>
+<body>
+<!--
+THESIS: the page opens in mist and settles into paper — atmosphere resolving into clarity, once, not repeated per section.
+OWN-WORLD: a single continuous dusk-to-parchment gradient carries the hero; a drawn circular seal stands in for a logo; one warm copper accent; a dot-leader ledger for the program table, adapted from a table-of-contents.
+STORY: a facility risk manager arrives to something contemplative and credible, reads the problem as a quiet inscription, the two signals as one flowing passage, and the program as an inscribed list they can scan in seconds.
+FIRST VIEWPORT: full-bleed vertical gradient hero, centered seal + headline + copy + CTAs, resolving toward parchment at its base.
+FORM: moody atmospheric ground + characterful serif + circular seal mark, adapted from a curated mountain-landscape reference (site4); direction D of 4.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+
+  <nav style="position:absolute;top:0;left:0;right:0;z-index:5;background:linear-gradient(180deg, rgba(36,44,39,0.55) 0%, rgba(36,44,39,0.15) 100%);">
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:88px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11.5" fill="none" stroke="var(--parchment)" stroke-width="1.2" opacity="0.85"/><path d="M13 5 L19 16 L7 16 Z" fill="none" stroke="var(--parchment)" stroke-width="1.1" opacity="0.85"/></svg>
+        <div style="font-family:'Boska',serif;font-weight:600;font-size:20px;letter-spacing:0.02em;color:var(--parchment);">Quattro</div>
+      </div>
+      <div style="display:flex;gap:34px;font-size:14px;color:rgba(246,241,228,0.82);">
+        <a href="#">Coverage</a><a href="#">How we underwrite</a><a href="#">For brokers</a><a href="#">Contact</a>
+      </div>
+      <div style="display:flex;gap:12px;">
+        <span class="btn btn-line-light" style="padding:9px 18px;font-size:12px;">Agent login</span>
+        <span class="btn btn-line-light" style="padding:9px 18px;font-size:12px;">Underwriter login</span>
+      </div>
+    </div>
+  </nav>
+
+  <section style="position:relative;padding:180px 0 160px;text-align:center;background:linear-gradient(180deg, var(--mist-1) 0%, var(--mist-2) 30%, var(--mist-3) 62%, var(--mist-3) 88%, var(--parchment) 100%);color:var(--parchment);">
+    <div class="wrap" style="max-width:720px;margin:0 auto;">
+      <svg width="46" height="46" viewBox="0 0 46 46" style="margin-bottom:26px;"><circle cx="23" cy="23" r="20" fill="none" stroke="var(--copper)" stroke-width="1.3"/><path d="M23 9 L34 29 L12 29 Z" fill="none" stroke="var(--copper)" stroke-width="1.1"/><circle cx="23" cy="23" r="2" fill="var(--copper)"/></svg>
+      <h1 style="font-size:44px;margin-bottom:26px;color:var(--parchment);">Comprehensive insurance &amp; risk management for <span style="color:var(--copper);font-style:italic;">long-term care facilities</span></h1>
+      <p style="font-size:17px;line-height:1.75;color:rgba(246,241,228,0.78);max-width:580px;margin:0 auto 36px;">Quattro is a managing general agency built specifically for long-term care facilities, underwriting professional and general liability with facility-level diligence and ongoing risk guidance.</p>
+      <div style="display:flex;gap:16px;justify-content:center;">
+        <span class="btn btn-copper">Talk to our team</span>
+        <span class="btn btn-line-light">I'm a broker</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:96px 0;">
+    <div class="wrap" style="max-width:640px;margin:0 auto;text-align:center;">
+      <h2 style="font-size:30px;margin-bottom:20px;">Class-average pricing cannot see your building.</h2>
+      <p style="font-size:16px;line-height:1.8;color:var(--text-soft);margin-bottom:56px;">Most long-term care liability is still priced off state and facility-type averages, re-rated once annually — with no way to reward a well-run facility, and firm caps on the coverage that matters most.</p>
+
+      <div style="display:inline-flex;gap:22px;text-align:left;border-left:2px solid var(--copper);padding-left:22px;margin-bottom:52px;">
+        <div>
+          <div style="font-family:'Boska',serif;font-size:26px;color:var(--forest-text);">$25,000 – $100,000</div>
+          <div style="font-size:13px;color:var(--text-soft);font-style:italic;margin-top:4px;">typical sublimit, most carriers</div>
+          <div style="font-family:'Boska',serif;font-size:26px;color:var(--copper-deep);margin-top:16px;">Full limits, no sublimit</div>
+          <div style="font-size:13px;color:var(--text-soft);font-style:italic;margin-top:4px;">Quattro's program</div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:26px;text-align:left;max-width:480px;margin:0 auto;">
+        <p style="font-size:15px;line-height:1.6;color:var(--text-soft);"><b style="color:var(--forest-text);font-style:italic;">Assault &amp; battery</b> — sublimited far below the policy limit.</p>
+        <p style="font-size:15px;line-height:1.6;color:var(--text-soft);"><b style="color:var(--forest-text);font-style:italic;">Sexual abuse &amp; molestation</b> — often the most restricted line.</p>
+        <p style="font-size:15px;line-height:1.6;color:var(--text-soft);"><b style="color:var(--forest-text);font-style:italic;">Wandering &amp; elopement</b> — treated as a footnote, not core risk.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:96px 0;background:var(--parchment-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <h2 style="font-size:30px;max-width:600px;margin:0 auto 50px;text-align:center;">Two signals already present within your facility</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:820px;margin:0 auto;">
+        <div style="padding:6px 40px 6px 0;border-right:1px solid var(--line);">
+          <div style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper-deep);margin-bottom:14px;">Clinical signal</div>
+          <p style="font-size:16px;line-height:1.75;color:var(--forest-text);">Incident documentation, care planning activity, staffing patterns, and clinical outcomes, reviewed over the ninety days preceding your application.</p>
+        </div>
+        <div style="padding:6px 0 6px 40px;">
+          <div style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper-deep);margin-bottom:14px;">Observed signal</div>
+          <p style="font-size:16px;line-height:1.75;color:var(--forest-text);">Fall response times, supervision patterns, and safety-relevant events from monitoring already installed, over that same window.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:96px 0;">
+    <div class="wrap" style="max-width:640px;margin:0 auto;">
+      <h2 style="font-size:30px;text-align:center;margin-bottom:50px;">General &amp; professional liability for long-term care</h2>
+      <div>
+        <div style="display:flex;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;"><span>General liability</span><span class="leader"></span><span style="font-family:'Boska',serif;">$1M / $2M</span></div>
+        <div style="display:flex;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;"><span>Professional liability</span><span class="leader"></span><span style="font-family:'Boska',serif;">$1M / $3M</span></div>
+        <div style="display:flex;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;"><span>Assault &amp; battery</span><span class="leader"></span><span style="font-family:'Boska',serif;color:var(--copper-deep);">Full limits</span></div>
+        <div style="display:flex;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;"><span>Sexual abuse &amp; molestation</span><span class="leader"></span><span style="font-family:'Boska',serif;color:var(--copper-deep);">Full limits</span></div>
+        <div style="display:flex;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;"><span>Wandering &amp; elopement</span><span class="leader"></span><span style="font-family:'Boska',serif;color:var(--copper-deep);">Full limits</span></div>
+        <div style="display:flex;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;"><span>Defense costs</span><span class="leader"></span><span style="font-family:'Boska',serif;">Outside limit</span></div>
+        <div style="display:flex;align-items:baseline;padding:14px 0;font-size:15px;"><span>Deductible</span><span class="leader"></span><span style="font-family:'Boska',serif;">$2,500–$25,000</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:56px 0;text-align:center;background:var(--mist-1);color:rgba(246,241,228,0.7);">
+    <div class="wrap">
+      <div style="font-family:'Boska',serif;font-weight:600;font-size:19px;margin-bottom:14px;color:var(--parchment);">Quattro</div>
+      <p style="font-size:12px;line-height:1.7;max-width:640px;margin:0 auto;">Quattro Insurance Services is an insurance managing general agency in formation. Coverage described herein is a program under development, subject to underwriting review and confirmation of carrier and reinsurance capacity.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

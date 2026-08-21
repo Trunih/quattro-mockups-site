@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quattro — Direction A: Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#E6E8E1; --bone-2:#DCE0D6; --card:#F1F3ED;
+    --ink:#14110D; --ink-soft:#4A453B; --ink-2:#26221B;
+    --red:#B0311E; --red-deep:#7E2114; --sage:#52644E; --sage-deep:#3B4A38;
+    --line:rgba(20,17,13,0.14); --line-strong:rgba(20,17,13,0.28);
+  }
+  *{box-sizing:border-box;}
+  ::selection{background:var(--red);color:var(--bone);}
+  body{margin:0;font-family:'General Sans',sans-serif;background:var(--bone);color:var(--ink);-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  a:focus-visible, button:focus-visible, .btn:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+  h1,h2,h3{font-family:'Clash Display',sans-serif;font-weight:600;margin:0;line-height:1.03;letter-spacing:-0.01em;}
+  p{margin:0;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+  .num{font-family:'Martian Mono',monospace;font-variant-numeric:tabular-nums;}
+  .tag{font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:'General Sans',sans-serif;font-weight:600;font-size:15px;padding:14px 28px;border:1.5px solid var(--ink);border-radius:0;transition:background .15s ease, color .15s ease, border-color .15s ease;}
+  .btn-ink{background:var(--ink);color:var(--bone);}
+  .btn-ink:hover{background:var(--ink-2);}
+  .btn-line{border-color:var(--ink);color:var(--ink);}
+  .btn-line:hover{border-color:var(--red);color:var(--red);}
+  .btn-ghost{border-color:rgba(242,238,227,0.4);color:var(--bone);}
+  .btn-ghost:hover{border-color:var(--bone);}
+  ::-webkit-scrollbar{width:12px;}
+  ::-webkit-scrollbar-track{background:var(--bone);}
+  ::-webkit-scrollbar-thumb{background:var(--line-strong);border:3px solid var(--bone);border-radius:8px;}
+</style>
+</head>
+<body>
+<!--
+THESIS: Quattro's own wordmark is the ledger — a real signal line cuts through the letters, not beside them.
+OWN-WORLD: warm bone/ink ground, surgical red for unresolved risk, sage for what Quattro resolves; sharp corners throughout; Martian Mono only for real tabular data, never decoration.
+STORY: a facility risk manager sees the pricing problem stated as an actual crossed-out ledger line, then the two real signals Quattro reads, then the full program table proving the fix.
+FIRST VIEWPORT: sticky nav; hero graphic band (outlined wordmark + two crossing signal lines, labeled); H1 + copy + CTAs on clean ground beneath, unobstructed.
+FORM: structural-wordmark device adapted from a curated fashion reference (site5) into a data-signal motif; direction A of 4.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+
+  <nav style="position:sticky;top:0;z-index:5;background:rgba(242,238,227,0.96);border-bottom:1px solid var(--line);backdrop-filter:none;">
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:76px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="width:8px;height:8px;background:var(--red);display:inline-block;"></span>
+        <div style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.01em;">QUATTRO</div>
+      </div>
+      <div style="display:flex;gap:32px;font-size:14px;color:var(--ink-soft);">
+        <a href="#" style="transition:color .15s;">Coverage</a>
+        <a href="#" style="transition:color .15s;">How we underwrite</a>
+        <a href="#" style="transition:color .15s;">For brokers</a>
+        <a href="#" style="transition:color .15s;">Contact</a>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <span class="btn btn-line" style="padding:9px 18px;font-size:13px;">Agent login</span>
+        <span class="btn btn-ink" style="padding:9px 18px;font-size:13px;">Underwriter login</span>
+      </div>
+    </div>
+  </nav>
+
+  <section style="padding:0 0 90px;">
+    <div style="position:relative;height:260px;padding:14px 0;overflow:hidden;border-bottom:1px solid var(--line);">
+      <div aria-hidden="true" style="position:absolute;left:0;right:0;top:38px;white-space:nowrap;font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(90px,15vw,220px);letter-spacing:-0.02em;color:var(--bone);-webkit-text-stroke:1.5px rgba(20,17,13,0.55);text-stroke:1.5px rgba(20,17,13,0.55);line-height:1;">QUATTRO</div>
+      <svg width="100%" height="260" viewBox="0 0 1200 260" preserveAspectRatio="none" style="position:absolute;left:0;top:0;">
+        <polyline points="0,150 120,148 220,152 320,90 420,140 520,146 620,60 720,150 820,144 920,148 1020,146 1200,150" fill="none" stroke="var(--red)" stroke-width="2.5"/>
+        <polyline points="0,190 150,188 300,192 450,182 600,188 750,184 900,190 1050,186 1200,190" fill="none" stroke="var(--sage)" stroke-width="2.5"/>
+        <circle cx="620" cy="60" r="4" fill="var(--red)"/>
+      </svg>
+      <div class="wrap" style="position:relative;height:100%;">
+        <div style="position:absolute;left:40px;top:22px;display:flex;align-items:center;gap:8px;">
+          <span style="width:7px;height:7px;background:var(--red);display:inline-block;"></span>
+          <span class="tag" style="color:var(--red-deep);text-transform:none;letter-spacing:normal;">Observed signal · spike, day 41</span>
+        </div>
+        <div style="position:absolute;left:40px;bottom:24px;display:flex;align-items:center;gap:8px;">
+          <span style="width:7px;height:7px;background:var(--sage);display:inline-block;"></span>
+          <span class="tag" style="color:var(--sage-deep);text-transform:none;letter-spacing:normal;">Clinical signal · 90-day baseline</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap" style="padding-top:64px;max-width:840px;">
+      <h1 style="font-size:52px;margin-bottom:24px;">Comprehensive insurance and risk management for long-term care facilities.</h1>
+      <p style="font-size:18px;line-height:1.6;color:var(--ink-soft);max-width:640px;margin-bottom:36px;">Quattro is an AI-native managing general agency built for long-term care facilities. We underwrite professional liability and general liability insurance using granular, facility-level data, and our proprietary AI provides ongoing risk management alerts to help mitigate incidents before they occur.</p>
+      <div style="display:flex;gap:16px;">
+        <span class="btn btn-ink">Talk to our team</span>
+        <span class="btn btn-line">I'm a broker</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:90px 0;border-top:1px solid var(--line);">
+    <div class="wrap">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:56px;">
+        <h2 style="font-size:34px;">Class-average pricing can't see your building.</h2>
+        <p style="font-size:16px;line-height:1.65;color:var(--ink-soft);padding-top:6px;">Most long-term care liability is still priced off state and facility-type averages, then re-rated once a year. It has no way to reward a facility that is actually run well, and it caps the coverage that matters most right when a claim gets serious.</p>
+      </div>
+
+      <div style="border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:28px 0;display:flex;align-items:baseline;gap:24px;flex-wrap:wrap;">
+        <span class="num" style="font-size:26px;color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;">$25,000–$100,000 typical sublimit</span>
+        <span style="font-size:15px;color:var(--ink-soft);">→</span>
+        <span class="num" style="font-size:26px;color:var(--sage-deep);font-weight:600;">Quattro: full limits, no sublimit</span>
+      </div>
+
+      <div style="margin-top:8px;">
+        <div style="display:grid;grid-template-columns:120px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line);align-items:baseline;">
+          <span class="tag" style="color:var(--red-deep);">A&amp;B</span>
+          <p style="font-size:15px;color:var(--ink-soft);">Assault and battery sublimited far below the policy limit.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:120px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line);align-items:baseline;">
+          <span class="tag" style="color:var(--red-deep);">SAM</span>
+          <p style="font-size:15px;color:var(--ink-soft);">Sexual abuse coverage is often the most restricted line.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:120px 1fr;gap:24px;padding:20px 0;align-items:baseline;">
+          <span class="tag" style="color:var(--red-deep);">W&amp;E</span>
+          <p style="font-size:15px;color:var(--ink-soft);">Wandering &amp; elopement treated as a footnote, not core risk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:90px 0;background:var(--bone-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <h2 style="font-size:34px;max-width:640px;margin-bottom:44px;">Two signals already inside your building, read at the facility level.</h2>
+      <div style="border:1px solid var(--line-strong);background:var(--card);">
+        <div style="display:grid;grid-template-columns:220px 1fr;gap:32px;padding:36px;border-bottom:1px solid var(--line);">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <span style="width:10px;height:10px;background:var(--sage);margin-top:6px;flex:none;"></span>
+            <div class="tag" style="color:var(--sage-deep);">Clinical signal</div>
+          </div>
+          <div>
+            <h3 style="font-size:21px;margin-bottom:10px;">What your care records already show</h3>
+            <p style="font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:640px;">Incident documentation, care planning activity, staffing patterns, and clinical outcomes from the systems your clinical teams already use, reviewed over the 90 days preceding your application.</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:220px 1fr;gap:32px;padding:36px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <span style="width:10px;height:10px;background:var(--red);margin-top:6px;flex:none;"></span>
+            <div class="tag" style="color:var(--red-deep);">Observed signal</div>
+          </div>
+          <div>
+            <h3 style="font-size:21px;margin-bottom:10px;">What's actually happening on the floor</h3>
+            <p style="font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:640px;">Fall response times, supervision patterns, and safety-relevant events from monitoring systems already installed in your facility, over that same 90-day window.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:90px 0;">
+    <div class="wrap">
+      <h2 style="font-size:34px;max-width:640px;margin-bottom:8px;">General liability and professional liability for long-term care.</h2>
+      <p style="font-size:14px;color:var(--ink-soft);margin-bottom:36px;">Every figure below is a bound program term, not a target.</p>
+      <div style="border-top:1.5px solid var(--ink);">
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px;"><div style="color:var(--ink-soft);">General liability</div><div class="num" style="text-align:right;">$1M each occurrence / $2M aggregate</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px;"><div style="color:var(--ink-soft);">Professional liability</div><div class="num" style="text-align:right;">$1M each claim / $3M aggregate</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px;"><div style="color:var(--ink-soft);">Assault and battery</div><div class="num" style="text-align:right;color:var(--sage-deep);font-weight:600;">Full limits, no sublimit</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px;"><div style="color:var(--ink-soft);">Sexual abuse and molestation</div><div class="num" style="text-align:right;color:var(--sage-deep);font-weight:600;">Full limits, no sublimit</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px;"><div style="color:var(--ink-soft);">Wandering and elopement</div><div class="num" style="text-align:right;color:var(--sage-deep);font-weight:600;">Full limits, no sublimit</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px;"><div style="color:var(--ink-soft);">Defense costs</div><div class="num" style="text-align:right;">Outside the limit of liability</div></div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;padding:18px 0;font-size:14px;"><div style="color:var(--ink-soft);">Deductible options</div><div class="num" style="text-align:right;">$2,500 to $25,000 per claim</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:var(--ink);color:rgba(242,238,227,0.62);padding:56px 0;">
+    <div class="wrap">
+      <div style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:19px;color:var(--bone);margin-bottom:16px;">QUATTRO</div>
+      <p style="font-size:12px;line-height:1.6;max-width:760px;">Quattro Insurance Services is an insurance managing general agency in formation. Coverage described on this site is a program under development. Limits, terms, and availability are subject to underwriting review and confirmation of carrier and reinsurance capacity, and are not currently bound in any jurisdiction.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
