@@ -95,6 +95,9 @@
     section h2{font-size:26px !important;}
     .form-grid{grid-template-columns:1fr !important;}
     .portal-body{grid-template-columns:1fr !important;}
+    #contact-grid{grid-template-columns:1fr !important;gap:36px !important;}
+    .hero-row{grid-template-columns:1fr !important;align-items:start !important;}
+    .hero-row > div:last-child{justify-content:flex-start !important;}
     #sticky-cta{padding:12px 20px;flex-direction:column;align-items:flex-start;gap:8px;}
     #s1 > .wrap > div, #howworks-row{flex-direction:column !important;}
     #s1 > .wrap > div > div, #howworks-row > div{border-right:none !important;border-bottom:1px solid var(--line);padding:20px 0 !important;}
@@ -120,8 +123,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <a href="#coverage">Coverage</a><a href="#how-we-underwrite">How we underwrite</a><a href="#brokers">For brokers</a><a href="#contact">Contact</a>
       </div>
       <div style="display:flex;gap:10px;">
-        <span class="btn btn-out" style="padding:9px 18px;font-size:13px;">Agent login</span>
-        <span class="btn btn-ember" style="padding:9px 18px;font-size:13px;">Underwriter login</span>
+        <a class="btn btn-ember" style="padding:9px 18px;font-size:13px;" href="#contact">Get in touch</a>
         <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
       </div>
     </div>
@@ -146,7 +148,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <div class="wrap" style="position:relative;padding-top:60px;">
       <h1 style="font-size:clamp(38px,7vw,88px);max-width:900px;">Comprehensive insurance and risk<br>management for <span style="color:var(--ember);">long-term care facilities.</span></h1>
     </div>
-    <div class="wrap" style="position:relative;margin-top:36px;display:grid;grid-template-columns:1.3fr 0.7fr;gap:48px;align-items:end;">
+    <div class="wrap hero-row" style="position:relative;margin-top:36px;display:grid;grid-template-columns:1.3fr 0.7fr;gap:48px;align-items:end;">
       <p style="font-size:16px;line-height:1.7;color:var(--text-dim);max-width:600px;">Quattro is a specialty MGA, AI-native, underwriting general and professional liability for long-term care facilities from granular, facility-level data, replacing sublimits as low as <span class="num" style="color:var(--ember);border-bottom:1.5px solid var(--ember);">$25K–$100K</span> with full limits, and watching that same signal to help prevent the next incident.</p>
       <div style="display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;">
         <a class="btn btn-ember" href="#contact">Talk to our team</a>

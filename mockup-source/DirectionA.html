@@ -107,6 +107,7 @@
     .portal-body{grid-template-columns:1fr !important;}
     #sticky-cta{padding:12px 20px;flex-direction:column;align-items:flex-start;gap:8px;}
     .ledger-row{grid-template-columns:1fr !important;gap:8px !important;}
+    .signal-row{grid-template-columns:1fr !important;gap:14px !important;padding:24px !important;}
     table.responsive-table, table.responsive-table thead{display:none;}
   }
 </style>
@@ -134,8 +135,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-auth">
-        <span class="btn btn-line" style="padding:9px 18px;font-size:13px;">Agent login</span>
-        <span class="btn btn-ink" style="padding:9px 18px;font-size:13px;">Underwriter login</span>
+        <a class="btn btn-ink" style="padding:9px 18px;font-size:13px;" href="#contact">Get in touch</a>
         <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
       </div>
     </div>
@@ -218,7 +218,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <h2 style="font-size:34px;max-width:640px;margin-bottom:20px;">Two signals already inside your building, read at the facility level.</h2>
       <p style="font-size:15px;line-height:1.65;color:var(--ink-soft);max-width:720px;margin-bottom:36px;">We don't ask operators to install anything new. At submission, Quattro's proprietary AI reads 90 days of the clinical and monitoring data already generated in your facility, alongside the application itself, to underwrite at the facility level instead of a state or class average.</p>
       <div style="border:1px solid var(--line-strong);background:var(--card);">
-        <div style="display:grid;grid-template-columns:220px 1fr;gap:32px;padding:36px;border-bottom:1px solid var(--line);">
+        <div class="signal-row" style="display:grid;grid-template-columns:220px 1fr;gap:32px;padding:36px;border-bottom:1px solid var(--line);">
           <div style="display:flex;align-items:flex-start;gap:12px;">
             <span style="width:10px;height:10px;background:var(--sage);margin-top:6px;flex:none;"></span>
             <div class="tag" style="color:var(--sage-deep);">Clinical signal</div>
@@ -228,7 +228,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             <p style="font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:640px;">Incident documentation, care planning activity, staffing patterns, and clinical outcomes from the systems your clinical teams already use every day, reviewed over the 90 days preceding your application.</p>
           </div>
         </div>
-        <div style="display:grid;grid-template-columns:220px 1fr;gap:32px;padding:36px;">
+        <div class="signal-row" style="display:grid;grid-template-columns:220px 1fr;gap:32px;padding:36px;">
           <div style="display:flex;align-items:flex-start;gap:12px;">
             <span style="width:10px;height:10px;background:var(--red);margin-top:6px;flex:none;"></span>
             <div class="tag" style="color:var(--red-deep);">Observed signal</div>
