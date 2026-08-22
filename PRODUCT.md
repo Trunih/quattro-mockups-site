@@ -44,9 +44,14 @@ Sales motion is broker-mediated as well as direct. The site must work as a first
 
 ## Evidence on Hand
 
-- Full page copy (hero, pricing-problem, two-signals, program table, footer legal) is established and preserved verbatim across directions — see mockup-source history.
-- Five user-curated aesthetic references at `~/design-references/` (site1–site5) with taste notes; treated as binding aesthetic input for this round (see design work for how each was used).
+- `reference-content.html` (project root) is the canonical real-copy source: full hero, pricing-problem, how-we-underwrite, program, for-brokers/wholesale, what-we're-looking-for, and contact-form copy, plus the footer legal disclaimer. Its own visual design (colors, fonts, layout) is not authoritative for any direction, content only. All five directions as of round 2 use this content verbatim, and it should stay the source of truth for further rounds rather than re-deriving copy from an older direction file.
+- Round 2 (this file's directions A/B/C/D plus new direction E) added, per direction in its own established visual language: an illustrative trust/social-proof section (explicitly labeled as design-partner feedback, not verified reviews), a 4-step "how it works" sequence, an FAQ grounded only in already-established facts, and an illustrative underwriter-portal preview (explicitly labeled in development). None of these invent commercial claims; where content doesn't exist in `reference-content.html`, it's clearly marked illustrative/synthetic.
+- Five user-curated aesthetic references at `~/design-references/` (site1–site5) with taste notes; treated as binding aesthetic input for round 1 (see design work for how each was used).
 - No photography, logos, or real data visuals on hand. Any charts/graphics are original authored illustration, not real data, and read as illustrative rather than as fabricated evidence.
+
+## Direction 5: Ledger OS (shadcn/ui)
+
+Added in round 2. Deliberately-themed shadcn/ui build: graphite/slate neutrals with a single gold/amber accent, real `hsl(var(--x))` token convention (`--primary`, `--card`, `--border`, `--muted`, etc.), Cabinet Grotesk (display) + Manrope (body), authentic shadcn component shapes (bordered cards, badges, accordion). Not default shadcn zinc theme; the palette and type pairing are its own decisions layered on the component base.
 
 ## Product Principles
 

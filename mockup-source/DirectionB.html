@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quattro — Direction B: Vantage</title>
+<title>Quattro: Vantage | Specialty MGA for Long-Term Care Liability</title>
+<meta name="description" content="Quattro underwrites general and professional liability for long-term care facilities using facility-level clinical and monitoring signal instead of class-average pricing.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230E1216'/%3E%3Cpolyline points='4,24 12,24 16,10 20,26 28,24' fill='none' stroke='%23D2652B' stroke-width='2.5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&display=swap" rel="stylesheet">
@@ -11,54 +13,123 @@
 <style>
   :root{
     --dusk-1:#0E1216; --dusk-2:#171E24; --dusk-3:#232D35; --horizon:#3E4A52;
-    --ember:#D2652B; --ember-deep:#A44B1D;
+    --ember:#D2652B; --ember-deep:#A44B1D; --ember-tint:#E8A374;
     --paper:#EDE8DE; --paper-2:#E3DDCE;
     --text-dim:#93A0A8; --text-dim-2:#8B96A0;
     --line:rgba(237,232,222,0.12);
   }
   *{box-sizing:border-box;}
   ::selection{background:var(--ember);color:#0E1216;}
-  body{margin:0;font-family:'Switzer',sans-serif;background:var(--dusk-1);color:#EDE8DE;-webkit-font-smoothing:antialiased;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Switzer',sans-serif;background:var(--dusk-1);color:#EDE8DE;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   a{color:inherit;text-decoration:none;}
   a:focus-visible, .btn:focus-visible{outline:2px solid var(--ember);outline-offset:2px;}
   h1,h2,h3{font-family:'Big Shoulders Display',sans-serif;font-weight:700;margin:0;line-height:0.94;text-transform:none;}
   p{margin:0;}
   .wrap{max-width:1220px;margin:0 auto;padding:0 40px;}
   .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum";}
-  .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Switzer',sans-serif;font-weight:600;font-size:15px;padding:14px 28px;border:1.5px solid transparent;border-radius:0;transition:background .15s, border-color .15s, color .15s;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Switzer',sans-serif;font-weight:600;font-size:15px;padding:14px 28px;border:1.5px solid transparent;border-radius:0;cursor:pointer;transition:background .15s, border-color .15s, color .15s;}
   .btn-ember{background:var(--ember);color:#0E1216;}
   .btn-ember:hover{background:#E8763B;}
   .btn-out{border-color:rgba(237,232,222,0.35);color:#EDE8DE;}
   .btn-out:hover{border-color:var(--ember);color:var(--ember);}
+  .kicker{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim-2);margin-bottom:16px;}
   ::-webkit-scrollbar{width:12px;}
   ::-webkit-scrollbar-track{background:var(--dusk-1);}
   ::-webkit-scrollbar-thumb{background:#39444C;border:3px solid var(--dusk-1);border-radius:8px;}
   .rail-dot{width:7px;height:7px;border-radius:50%;background:var(--text-dim-2);transition:background .2s, transform .2s;}
   .rail-dot.active{background:var(--ember);transform:scale(1.4);}
+
+  .nav-links{display:flex;gap:30px;font-size:14px;color:var(--text-dim);}
+  .nav-links a:hover{color:var(--ember);}
+  .burger{display:none;background:none;border:1.5px solid rgba(237,232,222,0.35);width:40px;height:40px;align-items:center;justify-content:center;cursor:pointer;}
+  .burger span, .burger span::before, .burger span::after{content:'';display:block;width:18px;height:2px;background:#EDE8DE;position:relative;}
+  .burger span::before{position:absolute;top:-6px;}
+  .burger span::after{position:absolute;top:6px;}
+  .mobile-panel{display:none;position:fixed;inset:78px 0 0 0;background:var(--dusk-1);z-index:20;padding:24px 40px;flex-direction:column;gap:20px;overflow-y:auto;}
+  .mobile-panel.open{display:flex;}
+  .mobile-panel a{font-size:20px;font-family:'Big Shoulders Display',sans-serif;}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition-duration:.001ms !important; animation-duration:.001ms !important;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%;text-align:left;background:none;border:none;font-family:'Switzer',sans-serif;font-weight:600;font-size:16px;color:#EDE8DE;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;cursor:pointer;}
+  .faq-q:hover{color:var(--ember);}
+  .faq-plus{color:var(--ember);font-size:18px;flex:none;transition:transform .2s ease;}
+  .faq-item.open .faq-plus{transform:rotate(45deg);}
+  .faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;overflow:hidden;}
+  .faq-a > div{overflow:hidden;min-height:0;}
+  .faq-item.open .faq-a{grid-template-rows:1fr;}
+  .faq-a p{padding-bottom:20px;font-size:14px;line-height:1.6;color:var(--text-dim);max-width:640px;}
+
+  .portal-card{background:var(--dusk-3);border:1px solid var(--line);}
+  .portal-topbar{display:flex;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);font-size:12px;color:var(--text-dim-2);}
+  .portal-body{padding:24px 20px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .portal-alert{grid-column:1/-1;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--text-dim);}
+
+  #sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:15;background:var(--dusk-1);border-top:1px solid var(--line);color:#EDE8DE;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;transform:translateY(110%);transition:transform .3s ease;}
+  #sticky-cta.show{transform:translateY(0);}
+  #sticky-cta span.msg{font-size:14px;color:var(--text-dim);}
+
+  input, select, textarea{font-family:'Switzer',sans-serif;font-size:14px;padding:12px 14px;border:1.5px solid var(--line);background:var(--dusk-2);color:#EDE8DE;width:100%;}
+  input:focus, select:focus, textarea:focus{outline:2px solid var(--ember);outline-offset:1px;}
+  input::placeholder, textarea::placeholder{color:var(--text-dim-2);}
+  label{font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-dim-2);display:block;margin-bottom:8px;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .form-full{grid-column:1/-1;}
+  #contact-success{display:none;}
+  #contact-success.show{display:block;}
+
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    #rail{display:none !important;}
+    .wrap{padding:0 22px;}
+    h1{font-size:38px !important;}
+    section h2{font-size:26px !important;}
+    .form-grid{grid-template-columns:1fr !important;}
+    .portal-body{grid-template-columns:1fr !important;}
+    #sticky-cta{padding:12px 20px;flex-direction:column;align-items:flex-start;gap:8px;}
+    #s1 > .wrap > div, #howworks-row{flex-direction:column !important;}
+    #s1 > .wrap > div > div, #howworks-row > div{border-right:none !important;border-bottom:1px solid var(--line);padding:20px 0 !important;}
+    #s2 > .wrap > div{grid-template-columns:1fr !important;}
+    #s2 > .wrap > div > div{padding:0 !important;border-right:none !important;border-bottom:1px solid var(--line);padding-bottom:24px !important;margin-bottom:24px !important;}
+  }
 </style>
 </head>
 <body>
 <!--
-THESIS: the pitch is a low horizon at dusk — one oversized line of type anchored to the ground, not a centered banner.
+THESIS: the pitch is a low horizon at dusk, one oversized line of type anchored to the ground, not a centered banner.
 OWN-WORLD: dusk-to-charcoal gradient, a single ember accent held to underlines and one active index dot, condensed display type, a functional right-edge index that tracks real scroll position.
-STORY: a broker scrolls down through three real stops — the pricing problem, the two signals, the program — and the index rail on the right always shows which one they're in.
-FIRST VIEWPORT: full-bleed dusk gradient with a flat skyline silhouette at the base; the headline sits low-left, bottom-anchored, per a curated travel-site reference (site1); CTAs and the sublimit fact sit inline beside it, never boxed.
-FORM: atmospheric low-anchored hero + functional numbered index, adapted from site1; direction B of 4.
+STORY: a broker scrolls down through three real stops (pricing problem, two signals, program), then proof, mechanics, and a way to act, all in the same filmstrip grammar.
+FIRST VIEWPORT: full-bleed dusk gradient with a flat skyline silhouette at the base; the headline sits low-left, bottom-anchored; CTAs and the sublimit fact sit inline beside it, never boxed.
+FORM: atmospheric low-anchored hero + functional numbered index; round 2 extends the filmstrip/large-numeral grammar into trust, how-it-works, and FAQ rather than introducing new chrome. Direction 2 of 5.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
 -->
 
-  <nav style="position:sticky;top:0;z-index:6;background:rgba(14,18,22,0.9);border-bottom:1px solid var(--line);">
+  <nav style="position:sticky;top:0;z-index:21;background:rgba(14,18,22,0.9);border-bottom:1px solid var(--line);">
     <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:78px;">
       <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:23px;letter-spacing:0.01em;">QUATTRO</div>
-      <div style="display:flex;gap:30px;font-size:14px;color:var(--text-dim);">
-        <a href="#">Coverage</a><a href="#">How we underwrite</a><a href="#">For brokers</a><a href="#">Contact</a>
+      <div class="nav-links" data-scrollnav>
+        <a href="#coverage">Coverage</a><a href="#how-we-underwrite">How we underwrite</a><a href="#brokers">For brokers</a><a href="#contact">Contact</a>
       </div>
       <div style="display:flex;gap:10px;">
         <span class="btn btn-out" style="padding:9px 18px;font-size:13px;">Agent login</span>
         <span class="btn btn-ember" style="padding:9px 18px;font-size:13px;">Underwriter login</span>
+        <button class="burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
       </div>
     </div>
   </nav>
+
+  <div class="mobile-panel" id="mobilePanel" data-scrollnav>
+    <a href="#coverage">Coverage</a><a href="#how-we-underwrite">How we underwrite</a><a href="#brokers">For brokers</a><a href="#contact">Contact</a>
+  </div>
 
   <div id="rail" style="position:fixed;right:28px;top:50%;transform:translateY(-50%);z-index:6;display:flex;flex-direction:column;align-items:center;gap:14px;">
     <div class="rail-dot active" data-i="0"></div>
@@ -73,60 +144,105 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <polygon points="0,140 0,70 60,70 60,40 110,40 110,90 180,90 180,20 240,20 240,80 320,80 320,55 400,55 400,100 470,100 470,60 540,60 540,110 620,110 620,45 690,45 690,95 760,95 760,65 840,65 840,105 920,105 920,50 1000,50 1000,90 1080,90 1080,60 1160,60 1160,100 1240,100 1240,70 1400,70 1400,140" fill="var(--horizon)"/>
     </svg>
     <div class="wrap" style="position:relative;padding-top:60px;">
-      <h1 style="font-size:clamp(48px,7vw,88px);max-width:900px;">Comprehensive insurance and risk<br>management for <span style="color:var(--ember);">long-term care facilities.</span></h1>
+      <h1 style="font-size:clamp(38px,7vw,88px);max-width:900px;">Comprehensive insurance and risk<br>management for <span style="color:var(--ember);">long-term care facilities.</span></h1>
     </div>
     <div class="wrap" style="position:relative;margin-top:36px;display:grid;grid-template-columns:1.3fr 0.7fr;gap:48px;align-items:end;">
-      <p style="font-size:16px;line-height:1.7;color:var(--text-dim);max-width:600px;">Quattro is a specialty MGA, AI-native, underwriting general and professional liability for long-term care facilities from granular, facility-level data — replacing sublimits as low as <span class="num" style="color:var(--ember);border-bottom:1.5px solid var(--ember);">$25K–$100K</span> with full limits, and watching that same signal to help prevent the next incident.</p>
+      <p style="font-size:16px;line-height:1.7;color:var(--text-dim);max-width:600px;">Quattro is a specialty MGA, AI-native, underwriting general and professional liability for long-term care facilities from granular, facility-level data, replacing sublimits as low as <span class="num" style="color:var(--ember);border-bottom:1.5px solid var(--ember);">$25K–$100K</span> with full limits, and watching that same signal to help prevent the next incident.</p>
       <div style="display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;">
-        <span class="btn btn-ember">Talk to our team</span>
-        <span class="btn btn-out">I'm a broker</span>
+        <a class="btn btn-ember" href="#contact">Talk to our team</a>
+        <a class="btn btn-out" href="#brokers">I'm a broker</a>
       </div>
     </div>
   </section>
 
-  <section id="s1" style="padding:80px 0;background:var(--dusk-2);border-top:1px solid var(--line);">
+  <section id="s1" class="reveal" style="padding:80px 0;background:var(--dusk-2);border-top:1px solid var(--line);">
     <div class="wrap">
       <h2 style="font-size:34px;font-family:'Switzer',sans-serif;font-weight:600;line-height:1.15;max-width:640px;margin-bottom:16px;">Class-average pricing can't see your building.</h2>
-      <p style="font-size:15px;line-height:1.7;color:var(--text-dim);max-width:620px;margin-bottom:52px;">Most long-term care liability is priced off state and facility-type averages, re-rated once a year — with no way to reward a well-run facility, and hard caps on the coverage that matters most when a claim gets serious.</p>
-      <div style="display:flex;border-top:1px solid var(--line);">
-        <div style="flex:1;padding:24px 28px 0 0;border-right:1px solid var(--line);">
+      <p style="font-size:15px;line-height:1.7;color:var(--text-dim);max-width:620px;margin-bottom:24px;">Most long-term care liability is priced off state and facility-type averages, re-rated once a year, with no way to reward a well-run facility, and hard caps on the coverage that matters most when a claim gets serious.</p>
+      <p style="font-size:14px;line-height:1.65;color:var(--text-dim);max-width:700px;margin-bottom:52px;">Typical market sublimits on assault and battery, sexual abuse and molestation, and wandering and elopement claims are often inclusive of defense costs. A single serious claim can burn through the entire sublimit in legal fees before it ever reaches the injured party.</p>
+      <div style="display:flex;flex-wrap:wrap;border-top:1px solid var(--line);">
+        <div style="flex:1;min-width:180px;padding:24px 28px 20px 0;border-right:1px solid var(--line);">
           <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;"><span style="font-family:'Big Shoulders Display',sans-serif;font-size:26px;font-weight:700;color:var(--ember);">1</span><span style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim-2);">A&amp;B</span></div>
-          <p style="font-size:14px;color:var(--text-dim);line-height:1.55;">Assault and battery sublimited far below the underlying limit.</p>
+          <p style="font-size:14px;color:var(--text-dim);line-height:1.55;">Frequently sublimited far below the underlying policy limit.</p>
         </div>
-        <div style="flex:1;padding:24px 28px 0;border-right:1px solid var(--line);">
+        <div style="flex:1;min-width:180px;padding:24px 28px 20px;border-right:1px solid var(--line);">
           <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;"><span style="font-family:'Big Shoulders Display',sans-serif;font-size:26px;font-weight:700;color:var(--ember);">2</span><span style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim-2);">SAM</span></div>
-          <p style="font-size:14px;color:var(--text-dim);line-height:1.55;">The most restricted line, despite rising exposure.</p>
+          <p style="font-size:14px;color:var(--text-dim);line-height:1.55;">Often the most restricted line on the policy, despite rising exposure.</p>
         </div>
-        <div style="flex:1;padding:24px 0 0 28px;">
+        <div style="flex:1;min-width:180px;padding:24px 28px 20px;border-right:1px solid var(--line);">
           <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;"><span style="font-family:'Big Shoulders Display',sans-serif;font-size:26px;font-weight:700;color:var(--ember);">3</span><span style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim-2);">W&amp;E</span></div>
-          <p style="font-size:14px;color:var(--text-dim);line-height:1.55;">Treated as a footnote, not a core exposure.</p>
+          <p style="font-size:14px;color:var(--text-dim);line-height:1.55;">Common in memory care, treated as a footnote instead of a core exposure.</p>
+        </div>
+        <div style="flex:1;min-width:180px;padding:24px 0 20px 28px;">
+          <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px;"><span style="font-family:'Big Shoulders Display',sans-serif;font-size:26px;font-weight:700;color:var(--ember);">4</span><span style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim-2);">Rating</span></div>
+          <p style="font-size:14px;color:var(--text-dim);line-height:1.55;">Happens once a year, off static data, with no way to reflect today.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="s2" style="padding:88px 0;">
+  <section id="how-we-underwrite" class="reveal" style="padding:88px 0;">
     <div class="wrap">
-      <h2 style="font-size:34px;font-family:'Switzer',sans-serif;font-weight:600;line-height:1.15;max-width:640px;margin-bottom:52px;">Two signals already inside your building.</h2>
+      <h2 style="font-size:34px;font-family:'Switzer',sans-serif;font-weight:600;line-height:1.15;max-width:640px;margin-bottom:20px;">Two signals already inside your building.</h2>
+      <p style="font-size:15px;line-height:1.7;color:var(--text-dim);max-width:700px;margin-bottom:52px;">We don't ask operators to install anything new. At submission, Quattro's proprietary AI reads 90 days of the clinical and monitoring data already generated in the facility, alongside the application itself, to underwrite at the facility level instead of a state or class average.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;">
         <div style="padding-right:40px;border-right:1px solid var(--line);">
           <span style="display:block;font-family:'Big Shoulders Display',sans-serif;font-size:26px;font-weight:700;color:var(--ember);margin-bottom:6px;">1</span>
-          <h3 style="font-size:22px;font-family:'Switzer',sans-serif;font-weight:600;line-height:1.2;margin-bottom:14px;">Clinical signal — what your care records already show</h3>
+          <h3 style="font-size:22px;font-family:'Switzer',sans-serif;font-weight:600;line-height:1.2;margin-bottom:14px;">Clinical signal: what your care records already show</h3>
           <p style="font-size:15px;line-height:1.65;color:var(--text-dim);">Incident documentation, care planning, staffing patterns and clinical outcomes, read over the 90 days preceding your application.</p>
         </div>
         <div style="padding-left:40px;">
           <span style="display:block;font-family:'Big Shoulders Display',sans-serif;font-size:26px;font-weight:700;color:var(--ember);margin-bottom:6px;">2</span>
-          <h3 style="font-size:22px;font-family:'Switzer',sans-serif;font-weight:600;line-height:1.2;margin-bottom:14px;">Observed signal — what's happening on the floor, today</h3>
+          <h3 style="font-size:22px;font-family:'Switzer',sans-serif;font-weight:600;line-height:1.2;margin-bottom:14px;">Observed signal: what's happening on the floor, today</h3>
           <p style="font-size:15px;line-height:1.65;color:var(--text-dim);">Fall response times, supervision patterns and safety events from monitoring already installed, over that same 90-day window.</p>
+        </div>
+      </div>
+      <p style="font-size:15px;line-height:1.7;color:var(--text-dim);max-width:700px;margin-top:40px;">Quattro's proprietary AI combines both signals into a single, facility-level risk profile used to underwrite the policy. Once bound, we keep watching both signals and send early-warning alerts to help prevent incidents, with that same data informing underwriting again at renewal.</p>
+      <div style="display:flex;gap:32px;margin-top:20px;flex-wrap:wrap;">
+        <span class="num" style="font-size:13px;color:var(--ember);font-weight:600;">Zero new hardware to install.</span>
+        <span style="font-size:13px;color:var(--text-dim);max-width:460px;">This adds nothing to your clinical or facilities staff's workload; we work with what's already running in the building.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" style="padding:80px 0;background:var(--dusk-2);border-top:1px solid var(--line);">
+    <div class="wrap">
+      <h2 style="font-size:28px;font-family:'Switzer',sans-serif;font-weight:600;max-width:640px;margin-bottom:8px;">What operators and brokers are telling us.</h2>
+      <p style="font-size:13px;color:var(--text-dim);max-width:620px;margin-bottom:44px;">Quattro is an MGA in formation. These reactions are illustrative, drawn from early design-partner conversations, not verified customer reviews.</p>
+      <div style="display:flex;flex-wrap:wrap;border-top:1px solid var(--line);">
+        <div style="flex:1;min-width:260px;padding:24px 28px 20px 0;border-right:1px solid var(--line);">
+          <p style="font-size:15px;line-height:1.6;font-style:italic;margin-bottom:14px;">"A program that doesn't sublimit wandering and elopement into irrelevance is worth a serious look."</p>
+          <p style="font-size:12px;color:var(--text-dim-2);">Wholesale broker, senior living book</p>
+        </div>
+        <div style="flex:1;min-width:260px;padding:24px 28px 20px;border-right:1px solid var(--line);">
+          <p style="font-size:15px;line-height:1.6;font-style:italic;margin-bottom:14px;">"The first underwriting conversation that's felt like it understood the building."</p>
+          <p style="font-size:12px;color:var(--text-dim-2);">Director of Risk Management, regional operator</p>
+        </div>
+        <div style="flex:1;min-width:260px;padding:24px 0 20px 28px;">
+          <p style="font-size:15px;line-height:1.6;font-style:italic;margin-bottom:14px;">"No new hardware and no new burden on staff was the deciding factor."</p>
+          <p style="font-size:12px;color:var(--text-dim-2);">Administrator, assisted living community</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="s3" style="padding:80px 0 96px;background:var(--dusk-3);">
+  <section class="reveal" style="padding:88px 0;">
+    <div class="wrap">
+      <h2 style="font-size:28px;font-family:'Switzer',sans-serif;font-weight:600;max-width:600px;margin-bottom:44px;">How it works: from application to ongoing alerts.</h2>
+      <div id="howworks-row" style="display:flex;flex-wrap:wrap;border-top:1px solid var(--line);">
+        <div style="flex:1;min-width:180px;padding:24px 24px 20px 0;border-right:1px solid var(--line);"><span style="display:block;font-family:'Big Shoulders Display',sans-serif;font-size:26px;font-weight:700;color:var(--ember);margin-bottom:8px;">1</span><h3 style="font-size:16px;font-family:'Switzer',sans-serif;font-weight:600;margin-bottom:8px;">Application</h3><p style="font-size:13px;color:var(--text-dim);line-height:1.55;">Submit the standard application. No new systems or process required.</p></div>
+        <div style="flex:1;min-width:180px;padding:24px;border-right:1px solid var(--line);"><span style="display:block;font-family:'Big Shoulders Display',sans-serif;font-size:26px;font-weight:700;color:var(--ember);margin-bottom:8px;">2</span><h3 style="font-size:16px;font-family:'Switzer',sans-serif;font-weight:600;margin-bottom:8px;">Underwriting review</h3><p style="font-size:13px;color:var(--text-dim);line-height:1.55;">90 days of signal, read alongside the application, priced at the facility level.</p></div>
+        <div style="flex:1;min-width:180px;padding:24px;border-right:1px solid var(--line);"><span style="display:block;font-family:'Big Shoulders Display',sans-serif;font-size:26px;font-weight:700;color:var(--ember);margin-bottom:8px;">3</span><h3 style="font-size:16px;font-family:'Switzer',sans-serif;font-weight:600;margin-bottom:8px;">Policy issued</h3><p style="font-size:13px;color:var(--text-dim);line-height:1.55;">Full limits on A&amp;B, SAM, and W&amp;E, defense costs outside the limit.</p></div>
+        <div style="flex:1;min-width:180px;padding:24px 0 20px 24px;"><span style="display:block;font-family:'Big Shoulders Display',sans-serif;font-size:26px;font-weight:700;color:var(--ember);margin-bottom:8px;">4</span><h3 style="font-size:16px;font-family:'Switzer',sans-serif;font-weight:600;margin-bottom:8px;">Ongoing alerts</h3><p style="font-size:13px;color:var(--text-dim);line-height:1.55;">We keep watching both signals and alert your team early, informing renewal too.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="coverage" class="reveal" style="padding:80px 0 96px;background:var(--dusk-3);">
     <div class="wrap">
       <h2 style="font-size:32px;font-family:'Switzer',sans-serif;font-weight:600;max-width:600px;margin-bottom:8px;">General &amp; professional liability, built for long-term care.</h2>
-      <p style="font-size:13px;color:var(--text-dim-2);margin-bottom:40px;">Bound program terms.</p>
+      <p style="font-size:14px;line-height:1.65;color:var(--text-dim);max-width:700px;margin:16px 0 20px;">Built for skilled nursing, assisted living, memory care, and continuing care communities, focused on independent operators and small to mid-size regional chains most exposed to class-average pricing.</p>
+      <p style="font-size:13px;color:var(--text-dim-2);margin-bottom:32px;">Bound program terms.</p>
       <div style="display:flex;flex-wrap:wrap;border-top:1px solid var(--line);">
         <div style="flex:1;min-width:200px;padding:22px 24px 22px 0;border-right:1px solid var(--line);"><div style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim-2);margin-bottom:10px;">General liability</div><div class="num" style="font-size:17px;">$1M / $2M agg</div></div>
         <div style="flex:1;min-width:200px;padding:22px 24px;border-right:1px solid var(--line);"><div style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim-2);margin-bottom:10px;">Professional liability</div><div class="num" style="font-size:17px;">$1M / $3M agg</div></div>
@@ -134,22 +250,175 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <div style="flex:1;min-width:200px;padding:22px 24px;border-right:1px solid var(--line);"><div style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim-2);margin-bottom:10px;">Defense costs</div><div class="num" style="font-size:17px;">Outside the limit</div></div>
         <div style="flex:1;min-width:200px;padding:22px 0 22px 24px;"><div style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim-2);margin-bottom:10px;">Deductible</div><div class="num" style="font-size:17px;">$2,500–$25,000</div></div>
       </div>
+      <p style="font-size:12px;color:var(--text-dim-2);margin-top:16px;max-width:700px;">Limits shown are illustrative program targets for planning purposes. Final terms are subject to underwriting review and confirmation of carrier capacity, not yet bound.</p>
+    </div>
+  </section>
+
+  <section class="reveal" style="padding:88px 0;">
+    <div class="wrap">
+      <h2 style="font-size:28px;font-family:'Switzer',sans-serif;font-weight:600;max-width:600px;margin-bottom:8px;">The underwriter portal reads the same two signals.</h2>
+      <p style="font-size:13px;color:var(--text-dim-2);font-style:italic;margin-bottom:24px;">Illustrative preview, in development.</p>
+      <div class="portal-card">
+        <div class="portal-topbar"><span>Portal, facility risk profile</span><span>[Facility placeholder]</span></div>
+        <div class="portal-body">
+          <div><div class="kicker" style="color:var(--ember-tint);margin-bottom:8px;">Clinical signal</div><svg width="100%" height="46" viewBox="0 0 260 46"><polyline points="0,34 30,32 60,36 90,16 120,30 150,34 180,12 210,32 240,28 260,30" fill="none" stroke="#D2652B" stroke-width="2"/></svg></div>
+          <div><div class="kicker" style="color:#8FA3AC;margin-bottom:8px;">Observed signal</div><svg width="100%" height="46" viewBox="0 0 260 46"><rect x="0" y="20" width="14" height="26" fill="#8FA3AC"/><rect x="20" y="8" width="14" height="38" fill="#8FA3AC"/><rect x="40" y="24" width="14" height="22" fill="#8FA3AC"/><rect x="60" y="2" width="14" height="44" fill="#8FA3AC"/></svg></div>
+          <div class="portal-alert">Alert: fall response time trending up at [Facility placeholder]. Review recommended.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="brokers" class="reveal" style="padding:88px 0;background:var(--dusk-2);border-top:1px solid var(--line);">
+    <div class="wrap">
+      <h2 style="font-size:30px;font-family:'Switzer',sans-serif;font-weight:600;max-width:660px;margin-bottom:16px;">For appointed agents and wholesale partners: a dual-line program built for a segment brokers struggle to place.</h2>
+      <p style="font-size:14px;line-height:1.65;color:var(--text-dim);max-width:700px;margin-bottom:40px;">Most markets in this space write general liability only, price every account in a class the same, and offer no way to help a facility avoid a claim. Quattro is built differently on all three counts.</p>
+      <div style="display:flex;flex-direction:column;border-top:1px solid var(--line);margin-bottom:44px;">
+        <div style="display:grid;grid-template-columns:50px 1fr;gap:16px;padding:18px 20px 18px 0;border-bottom:1px solid var(--line);"><span class="num" style="font-family:'Big Shoulders Display',sans-serif;font-size:20px;color:var(--ember);">01</span><p style="font-size:14px;color:var(--text-dim);line-height:1.55;">Early-warning alerts, not just a policy. We monitor the same signal we underwrote on and flag issues before they become incidents.</p></div>
+        <div style="display:grid;grid-template-columns:50px 1fr;gap:16px;padding:18px 20px 18px 0;border-bottom:1px solid var(--line);"><span class="num" style="font-family:'Big Shoulders Display',sans-serif;font-size:20px;color:var(--ember);">02</span><p style="font-size:14px;color:var(--text-dim);line-height:1.55;">Broader coverage: full limits on A&amp;B, SAM and W&amp;E, with defense costs outside the limit.</p></div>
+        <div style="display:grid;grid-template-columns:50px 1fr;gap:16px;padding:18px 20px 18px 0;border-bottom:1px solid var(--line);"><span class="num" style="font-family:'Big Shoulders Display',sans-serif;font-size:20px;color:var(--ember);">03</span><p style="font-size:14px;color:var(--text-dim);line-height:1.55;">Granular, facility-level underwriting using 90 days of real facility data, not class averages.</p></div>
+        <div style="display:grid;grid-template-columns:50px 1fr;gap:16px;padding:18px 20px 18px 0;border-bottom:1px solid var(--line);"><span class="num" style="font-family:'Big Shoulders Display',sans-serif;font-size:20px;color:var(--ember);">04</span><p style="font-size:14px;color:var(--text-dim);line-height:1.55;">Combined GL and PL under one program, so clients aren't stacking two markets to cover one facility.</p></div>
+        <div style="display:grid;grid-template-columns:50px 1fr;gap:16px;padding:18px 0;"><span class="num" style="font-family:'Big Shoulders Display',sans-serif;font-size:20px;color:var(--ember);">05</span><p style="font-size:14px;color:var(--text-dim);line-height:1.55;">A single point of contact through binding and into claims.</p></div>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px;">
+        <a class="btn btn-ember" href="#contact">Request an appointment</a>
+        <span class="btn btn-out">Agent login</span>
+      </div>
+      <div class="kicker">What we're looking for</div>
+      <p style="font-size:14px;line-height:1.65;color:var(--text-dim);max-width:700px;margin-bottom:20px;">Retail and wholesale brokers with active long-term care and senior living books, particularly independent or regional operators facing sublimit restrictions or non-renewal.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <span style="font-size:12px;border:1px solid var(--line);padding:8px 14px;color:var(--text-dim);">Skilled nursing / assisted living renewals</span>
+        <span style="font-size:12px;border:1px solid var(--line);padding:8px 14px;color:var(--text-dim);">Memory care and CCRC accounts</span>
+        <span style="font-size:12px;border:1px solid var(--line);padding:8px 14px;color:var(--text-dim);">Declined or non-renewed accounts</span>
+        <span style="font-size:12px;border:1px solid var(--line);padding:8px 14px;color:var(--text-dim);">Capped by low A&amp;B or SAM sublimits</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" style="padding:88px 0;">
+    <div class="wrap" style="max-width:820px;">
+      <h2 style="font-size:28px;font-family:'Switzer',sans-serif;font-weight:600;margin-bottom:36px;">Questions underwriters and brokers ask first.</h2>
+      <div id="faqList">
+        <div class="faq-item"><button class="faq-q"><span>How is a policy actually rated?</span><span class="faq-plus">+</span></button><div class="faq-a"><div><p>Off two signals already inside the building: 90 days of clinical documentation and 90 days of observed monitoring data, read alongside the application, at the facility level rather than a state or class average.</p></div></div></div>
+        <div class="faq-item"><button class="faq-q"><span>Do we need to install anything?</span><span class="faq-plus">+</span></button><div class="faq-a"><div><p>Quattro reads the clinical and monitoring systems already running in the facility, so there's nothing new to install and nothing extra for staff to do.</p></div></div></div>
+        <div class="faq-item"><button class="faq-q"><span>What's actually different in the coverage?</span><span class="faq-plus">+</span></button><div class="faq-a"><div><p>Full limits with no sublimit on A&amp;B, SAM and W&amp;E, plus defense costs outside the limit of liability. Deductibles run $2,500 to $25,000 per claim.</p></div></div></div>
+        <div class="faq-item"><button class="faq-q"><span>What facility types do you write?</span><span class="faq-plus">+</span></button><div class="faq-a"><div><p>Skilled nursing, assisted living, memory care, and CCRCs, focused on independent operators and small to mid-size regional chains.</p></div></div></div>
+        <div class="faq-item"><button class="faq-q"><span>Is Quattro currently bound and licensed?</span><span class="faq-plus">+</span></button><div class="faq-a"><div><p>Not yet. Quattro Insurance Services is an MGA in formation, subject to underwriting review and confirmation of carrier and reinsurance capacity.</p></div></div></div>
+        <div class="faq-item"><button class="faq-q"><span>What happens after binding?</span><span class="faq-plus">+</span></button><div class="faq-a"><div><p>We keep reading both signals for the life of the policy and send early-warning alerts, with that data informing pricing again at renewal.</p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal" style="padding:88px 0;background:var(--dusk-2);border-top:1px solid var(--line);">
+    <div class="wrap">
+      <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;" id="contact-grid">
+        <div>
+          <h2 style="font-size:30px;font-family:'Switzer',sans-serif;font-weight:600;margin-bottom:16px;">Get in touch: tell us about your facility or your book.</h2>
+          <p style="font-size:14px;line-height:1.65;color:var(--text-dim);margin-bottom:28px;">Operators, reach out directly. Brokers, use this to request an appointment, or log in above if you're already appointed.</p>
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="form-full"><label for="cf-name">Full name</label><input id="cf-name" type="text" placeholder="Jordan Lee" required></div>
+              <div><label for="cf-role">I am a</label><select id="cf-role"><option value="">Select one</option><option value="operator">Facility operator</option><option value="broker">Retail broker</option><option value="wholesaler">Wholesale broker / MGA</option><option value="other">Other</option></select></div>
+              <div><label for="cf-company">Company / facility name</label><input id="cf-company" type="text" placeholder="Company name"></div>
+              <div><label for="cf-state">State</label><input id="cf-state" type="text" placeholder="e.g. Georgia"></div>
+              <div><label for="cf-email">Email</label><input id="cf-email" type="email" placeholder="name@company.com" required></div>
+              <div class="form-full"><label for="cf-phone">Phone</label><input id="cf-phone" type="tel" placeholder="(555) 555-0100"></div>
+              <div class="form-full"><label for="cf-message">What can we help with</label><textarea id="cf-message" rows="4" placeholder="Tell us about your facility, book of business, or coverage question."></textarea></div>
+            </div>
+            <button type="submit" class="btn btn-ember" style="margin-top:20px;">Send message</button>
+            <p style="font-size:12px;color:var(--text-dim-2);margin-top:14px;">We typically respond within one business day.</p>
+          </form>
+          <div id="contact-success"><h3 style="font-size:22px;margin-bottom:8px;">Message received.</h3><p style="font-size:14px;color:var(--text-dim);">Someone from our team will follow up shortly.</p></div>
+        </div>
+        <div>
+          <div class="kicker">Direct contact</div>
+          <div style="border-top:1px solid var(--line);">
+            <div style="padding:16px 0;border-bottom:1px solid var(--line);"><div class="kicker" style="margin-bottom:4px;">Email</div><a href="mailto:info@quattroinsurance.com">info@quattroinsurance.com</a></div>
+            <div style="padding:16px 0;border-bottom:1px solid var(--line);"><div class="kicker" style="margin-bottom:4px;">Phone</div><a href="tel:+14045550100">(404) 555-0100</a></div>
+            <div style="padding:16px 0;border-bottom:1px solid var(--line);"><div class="kicker" style="margin-bottom:4px;">Brokers</div><a href="mailto:appointments@quattroinsurance.com">appointments@quattroinsurance.com</a></div>
+            <div style="padding:16px 0;"><div class="kicker" style="margin-bottom:4px;">Appointed agents</div><p style="font-size:14px;color:var(--text-dim);">Use Agent login above to submit new business directly.</p></div>
+          </div>
+          <p style="font-size:12px;color:var(--text-dim-2);margin-top:16px;">Contact details shown are placeholders pending final launch confirmation.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer style="background:var(--paper);color:#3A362C;padding:52px 0;">
     <div class="wrap">
       <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:19px;margin-bottom:14px;">QUATTRO</div>
-      <p style="font-size:12px;line-height:1.6;color:#6B6656;max-width:760px;">Quattro Insurance Services is an insurance managing general agency in formation. Coverage described on this site is a program under development, subject to underwriting review and confirmation of carrier and reinsurance capacity.</p>
+      <div style="display:flex;gap:22px;flex-wrap:wrap;font-size:13px;margin-bottom:18px;">
+        <a href="#coverage">Coverage</a><a href="#how-we-underwrite">How we underwrite</a><a href="#brokers">For brokers</a><a href="#contact">Contact</a>
+      </div>
+      <p style="font-size:12px;line-height:1.6;color:#6B6656;max-width:760px;">Quattro Insurance Services is an insurance managing general agency in formation. Coverage described on this site is a program under development. Limits, terms, and availability are subject to underwriting review and confirmation of carrier and reinsurance capacity, and are not currently bound in any jurisdiction. This site is for informational purposes and does not constitute an offer of insurance.</p>
     </div>
   </footer>
 
+  <div id="sticky-cta">
+    <span class="msg">Ready to talk about coverage?</span>
+    <a class="btn btn-ember" href="#contact">Talk to our team</a>
+  </div>
+
 <script>
-  (function(){
-    var sections=['s1','s2','s3'].map(function(id){return document.getElementById(id);}).filter(Boolean);
-    var dots=Array.prototype.slice.call(document.querySelectorAll('.rail-dot'));
-    if(!sections.length || !dots.length) return;
-    function update(){
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var burger = document.getElementById('burgerBtn');
+  var panel = document.getElementById('mobilePanel');
+  if(burger && panel){
+    burger.addEventListener('click', function(){
+      var open = panel.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.querySelectorAll('#mobilePanel a').forEach(function(a){ a.addEventListener('click', function(){ panel.classList.remove('open'); }); });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(id.length>1){
+        var target = document.querySelector(id);
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior: reduced ? 'auto' : 'smooth', block:'start'}); }
+      }
+    });
+  });
+
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduced){
+    var revealIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); revealIO.unobserve(en.target); } });
+    }, {threshold:0.12});
+    reveals.forEach(function(r){ revealIO.observe(r); });
+  } else { reveals.forEach(function(r){ r.classList.add('in'); }); }
+
+  var hero = document.getElementById('s0');
+  var stickyBar = document.getElementById('sticky-cta');
+  var contactSection = document.getElementById('contact');
+  function updateSticky(){
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    var contactTop = contactSection.getBoundingClientRect().top;
+    stickyBar.classList.toggle('show', heroBottom < 0 && contactTop > window.innerHeight * 0.5);
+  }
+  window.addEventListener('scroll', updateSticky, {passive:true});
+  updateSticky();
+
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){ o.classList.remove('open'); });
+      if(!isOpen){ item.classList.add('open'); }
+    });
+  });
+
+  var form = document.getElementById('contactForm');
+  var success = document.getElementById('contact-success');
+  if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); form.style.display='none'; success.classList.add('show'); }); }
+
+  var sections=['s1','how-we-underwrite','coverage'].map(function(id){return document.getElementById(id);}).filter(Boolean);
+  var dots=Array.prototype.slice.call(document.querySelectorAll('.rail-dot'));
+  if(sections.length && dots.length){
+    function updateRail(){
       var mid=window.innerHeight*0.5;
       var current=0;
       for(var i=0;i<sections.length;i++){
@@ -159,10 +428,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       }
       dots.forEach(function(d,i){d.classList.toggle('active', i===current);});
     }
-    window.addEventListener('scroll', update, {passive:true});
-    window.addEventListener('resize', update);
-    update();
-  })();
+    window.addEventListener('scroll', updateRail, {passive:true});
+    window.addEventListener('resize', updateRail);
+    updateRail();
+  }
+})();
 </script>
 </body>
 </html>
