@@ -3,79 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quattro Insurance: Redesign Directions</title>
+<title>Quattro Insurance</title>
 <style>
   *{box-sizing:border-box;}
-  html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
-  #switcher-bar{
-    position:fixed;top:0;left:0;right:0;height:52px;z-index:1000;
-    background:#111214;display:flex;align-items:center;gap:16px;
-    padding:0 20px;box-shadow:0 1px 0 rgba(255,255,255,0.06);
-  }
-  #switcher-bar .label{
-    color:#f2f2f0;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;
-    flex:none;white-space:nowrap;
-  }
-  #switcher-bar .label .dim{color:#8a8a92;font-weight:500;margin-left:6px;}
-  #tabs{
-    display:flex;gap:8px;flex:1;min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch;
-    overscroll-behavior-x:contain;scrollbar-width:none;-ms-overflow-style:none;
-  }
-  #tabs::-webkit-scrollbar{display:none;}
-  .tab-btn{
-    appearance:none;border:1px solid rgba(255,255,255,0.14);background:transparent;color:#c7c7cc;
-    font-size:12px;font-weight:600;letter-spacing:0.02em;padding:8px 16px;border-radius:999px;
-    cursor:pointer;display:flex;align-items:center;gap:7px;transition:background 0.15s,color 0.15s,border-color 0.15s;
-    flex:none;
-  }
-  .tab-btn .num{font-size:10px;opacity:0.7;}
-  .tab-btn:hover{border-color:rgba(255,255,255,0.32);color:#fff;}
-  .tab-btn.active{background:#f2f2f0;color:#111214;border-color:#f2f2f0;}
-  .tab-btn.active .num{opacity:0.5;}
-  @media (max-width:700px){
-    #switcher-bar{padding:0 12px;gap:10px;}
-    #switcher-bar .label .dim{display:none;}
-    #tabs{justify-content:flex-start;}
-  }
-  #frame-wrap{position:absolute;top:52px;left:0;right:0;bottom:0;}
-  #frame-wrap iframe{
-    position:absolute;top:0;left:0;width:100%;height:100%;border:0;
-    display:none;background:#fff;
-  }
-  #frame-wrap iframe.active{display:block;}
+  html,body{margin:0;height:100%;}
+  iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;background:#07070A;}
 </style>
 </head>
 <body>
-
-  <div id="switcher-bar">
-    <div class="label">QUATTRO INSURANCE<span class="dim">: Redesign Directions</span></div>
-    <div id="tabs">
-      <button class="tab-btn active" data-target="frame-a"><span class="num">01</span> Ledger</button>
-      <button class="tab-btn" data-target="frame-b"><span class="num">02</span> Vantage</button>
-      <button class="tab-btn" data-target="frame-c"><span class="num">03</span> Bloom</button>
-      <button class="tab-btn" data-target="frame-d"><span class="num">04</span> Overlook</button>
-      <button class="tab-btn" data-target="frame-e"><span class="num">05</span> Ledger OS</button>
-    </div>
-  </div>
-
-  <div id="frame-wrap">
-    <iframe id="frame-a" class="active" src="mockup-source/DirectionA.html" title="Ledger"></iframe>
-    <iframe id="frame-b" src="mockup-source/DirectionB.html" title="Vantage"></iframe>
-    <iframe id="frame-c" src="mockup-source/DirectionC.html" title="Bloom"></iframe>
-    <iframe id="frame-d" src="mockup-source/DirectionD.html" title="Overlook"></iframe>
-    <iframe id="frame-e" src="mockup-source/DirectionE.html" title="Ledger OS"></iframe>
-  </div>
-
-  <script>
-    document.querySelectorAll('.tab-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-        document.querySelectorAll('#frame-wrap iframe').forEach(function(f){ f.classList.remove('active'); });
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.target).classList.add('active');
-      });
-    });
-  </script>
-
+  <iframe src="mockup-source/DirectionC.html" title="Quattro Insurance"></iframe>
 </body>
 </html>
