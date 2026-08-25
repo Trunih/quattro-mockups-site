@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "quattro-site",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "D:\\quattro -mockups-site", "run", "dev", "--", "--port", "3100"],
+      "port": 3100
+    }
+  ]
+}
