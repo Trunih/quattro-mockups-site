@@ -201,7 +201,7 @@ export const FAQ = {
 export const CONTACT_SECTION = {
   heading: "Get in touch: tell us about your facility or your book.",
   body:
-    "Operators, reach out directly. Brokers, use this to request an appointment, or sign in if you're already appointed.",
+    "Operators, reach out directly. Brokers, use this to request an appointment.",
   successHeading: "Message received.",
   successBody: "Someone from our team will follow up shortly.",
   responseNote: "We typically respond within one business day.",

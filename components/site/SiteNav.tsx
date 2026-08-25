@@ -44,9 +44,6 @@ export function SiteNav() {
           </div>
 
           <div className="nav-actions">
-            <Link href="/login" className="nav-signin">
-              Sign in
-            </Link>
             <Link href="/#contact" className="btn btn-violet btn-sm nav-cta">
               Get in touch
             </Link>
@@ -70,9 +67,6 @@ export function SiteNav() {
             </Link>
           ))}
           <div className="spectrum-soft" style={{ margin: "8px 0" }} />
-          <Link href="/login" onClick={() => setOpen(false)}>
-            Sign in
-          </Link>
           <Link
             href="/#contact"
             className="btn btn-violet"

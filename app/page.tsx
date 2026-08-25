@@ -413,9 +413,6 @@ export default function HomePage() {
             <Link className="btn btn-violet" href="/#contact">
               Request an appointment
             </Link>
-            <Link className="btn btn-out" href="/login">
-              Agent sign in
-            </Link>
           </div>
 
           <div className="tag" style={{ color: "var(--violet-text)", marginBottom: 14 }}>
@@ -486,22 +483,11 @@ export default function HomePage() {
                   </div>
                   <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
                 </div>
-                <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--line)" }}>
+                <div style={{ padding: "16px 20px" }}>
                   <div className="tag" style={{ marginBottom: 4, color: "var(--text-dim-2)" }}>
                     Brokers
                   </div>
                   <a href={`mailto:${CONTACT.brokerEmail}`}>{CONTACT.brokerEmail}</a>
-                </div>
-                <div style={{ padding: "16px 20px" }}>
-                  <div className="tag" style={{ marginBottom: 4, color: "var(--text-dim-2)" }}>
-                    Appointed agents
-                  </div>
-                  <p style={{ fontSize: 14, color: "var(--text-dim)" }}>
-                    <Link href="/login" style={{ color: "var(--violet-text)" }}>
-                      Sign in
-                    </Link>{" "}
-                    to submit new business directly.
-                  </p>
                 </div>
               </div>
               <p style={{ fontSize: 12, color: "var(--text-dim-2)", marginTop: 16, lineHeight: 1.6 }}>
