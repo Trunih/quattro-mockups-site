@@ -29,6 +29,10 @@ export default function HomePage() {
       <section style={{ position: "relative", padding: "100px 0 90px", overflow: "hidden" }}>
         <div className="wrap two-col">
           <div>
+            <span className="hero-badge">
+              <span className="dot" aria-hidden="true" />
+              {HERO.badge}
+            </span>
             <h1 style={{ fontSize: 50, marginBottom: 22 }}>
               {HERO.headingLead}
               <span style={{ color: "var(--violet)" }}>{HERO.headingAccent}</span>
@@ -162,14 +166,28 @@ export default function HomePage() {
 
           <div className="signal-card">
             <div className="signal-cell">
-              <svg width="120" height="56" viewBox="0 0 120 56" style={{ marginBottom: 20 }} aria-hidden="true">
-                <polyline
-                  points="0,40 14,38 26,42 38,18 50,34 62,40 74,12 86,38 98,34 110,38 120,36"
-                  fill="none"
-                  stroke="#2BC4B0"
-                  strokeWidth="2"
-                />
-              </svg>
+              <div className="chart-glow" style={{ "--glow-color": "rgba(43,196,176,0.35)" } as React.CSSProperties}>
+                <svg width="140" height="64" viewBox="0 0 140 64" style={{ marginBottom: 20 }} aria-hidden="true">
+                  <defs>
+                    <linearGradient id="docLineFill1" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#2BC4B0" stopOpacity="0.35" />
+                      <stop offset="100%" stopColor="#2BC4B0" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M4,46 C18,46 22,22 36,22 C50,22 54,40 68,40 C82,40 86,16 100,16 C114,16 118,34 132,34 L132,58 L4,58 Z"
+                    fill="url(#docLineFill1)"
+                  />
+                  <path
+                    d="M4,46 C18,46 22,22 36,22 C50,22 54,40 68,40 C82,40 86,16 100,16 C114,16 118,34 132,34"
+                    fill="none"
+                    stroke="#2BC4B0"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="132" cy="34" r="3.5" fill="#2BC4B0" />
+                </svg>
+              </div>
               <h3 style={{ fontSize: 20, marginBottom: 12 }}>
                 <span style={{ color: "var(--teal)" }}>{SIGNALS.documentation.label}</span>{" "}
                 {SIGNALS.documentation.title}
@@ -179,18 +197,27 @@ export default function HomePage() {
               </p>
             </div>
             <div className="signal-cell">
-              <svg width="120" height="56" viewBox="0 0 120 56" style={{ marginBottom: 20 }} aria-hidden="true">
-                {[
-                  [0, 24, 32],
-                  [16, 10, 46],
-                  [32, 30, 26],
-                  [48, 2, 54],
-                  [64, 20, 36],
-                  [80, 34, 22],
-                ].map(([x, y, h]) => (
-                  <rect key={x} x={x} y={y} width="10" height={h} fill="#6C4FE0" />
-                ))}
-              </svg>
+              <div className="chart-glow" style={{ "--glow-color": "rgba(108,79,224,0.4)" } as React.CSSProperties}>
+                <svg width="140" height="64" viewBox="0 0 140 64" style={{ marginBottom: 20 }} aria-hidden="true">
+                  <defs>
+                    <linearGradient id="actBarFill1" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#9B85F5" />
+                      <stop offset="100%" stopColor="#6C4FE0" />
+                    </linearGradient>
+                  </defs>
+                  {[
+                    [4, 30, 28],
+                    [24, 12, 46],
+                    [44, 36, 22],
+                    [64, 2, 56],
+                    [84, 24, 34],
+                    [104, 40, 18],
+                    [124, 20, 38],
+                  ].map(([x, y, h]) => (
+                    <rect key={x} x={x} y={y} width="12" height={h} rx="4" fill="url(#actBarFill1)" />
+                  ))}
+                </svg>
+              </div>
               <h3 style={{ fontSize: 20, marginBottom: 12 }}>
                 <span style={{ color: "var(--violet-text)" }}>{SIGNALS.activity.label}</span>{" "}
                 {SIGNALS.activity.title}
@@ -347,29 +374,57 @@ export default function HomePage() {
                 <div className="tag" style={{ color: "var(--teal)", marginBottom: 10 }}>
                   Documentation signal
                 </div>
-                <svg width="100%" height="46" viewBox="0 0 260 46" aria-hidden="true">
-                  <polyline
-                    points="0,34 30,32 60,36 90,16 120,30 150,34 180,12 210,32 240,28 260,30"
-                    fill="none"
-                    stroke="#2BC4B0"
-                    strokeWidth="2"
-                  />
-                </svg>
+                <div className="chart-glow" style={{ "--glow-color": "rgba(43,196,176,0.3)" } as React.CSSProperties}>
+                  <svg width="100%" height="46" viewBox="0 0 260 46" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="docLineFill2" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#2BC4B0" stopOpacity="0.3" />
+                        <stop offset="100%" stopColor="#2BC4B0" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      d="M6,32 C36,32 42,14 72,14 C102,14 108,34 138,34 C168,34 174,10 204,10 C224,10 236,22 254,24 L254,44 L6,44 Z"
+                      fill="url(#docLineFill2)"
+                    />
+                    <path
+                      d="M6,32 C36,32 42,14 72,14 C102,14 108,34 138,34 C168,34 174,10 204,10 C224,10 236,22 254,24"
+                      fill="none"
+                      stroke="#2BC4B0"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <circle cx="254" cy="24" r="3" fill="#2BC4B0" />
+                  </svg>
+                </div>
               </div>
               <div>
                 <div className="tag" style={{ color: "var(--violet-text)", marginBottom: 10 }}>
                   Activity signal
                 </div>
-                <svg width="100%" height="46" viewBox="0 0 260 46" aria-hidden="true">
-                  {[
-                    [0, 20, 26],
-                    [20, 8, 38],
-                    [40, 24, 22],
-                    [60, 2, 44],
-                  ].map(([x, y, h]) => (
-                    <rect key={x} x={x} y={y} width="14" height={h} fill="#6C4FE0" />
-                  ))}
-                </svg>
+                <div className="chart-glow" style={{ "--glow-color": "rgba(108,79,224,0.35)" } as React.CSSProperties}>
+                  <svg width="100%" height="46" viewBox="0 0 260 46" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="actBarFill2" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#9B85F5" />
+                        <stop offset="100%" stopColor="#6C4FE0" />
+                      </linearGradient>
+                    </defs>
+                    {[
+                      [4, 20, 24],
+                      [30, 8, 36],
+                      [56, 24, 20],
+                      [82, 2, 42],
+                      [108, 16, 28],
+                      [134, 28, 16],
+                      [160, 10, 34],
+                      [186, 22, 22],
+                      [212, 4, 40],
+                      [238, 18, 26],
+                    ].map(([x, y, h]) => (
+                      <rect key={x} x={x} y={y} width="14" height={h} rx="4" fill="url(#actBarFill2)" />
+                    ))}
+                  </svg>
+                </div>
               </div>
               <div className="portal-alert">{PORTAL_TEASER.alert}</div>
             </div>

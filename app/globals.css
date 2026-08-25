@@ -342,6 +342,30 @@ table.data td.strong{color:var(--off);font-weight:600;}
 .faq-item.open .faq-a{grid-template-rows:1fr;}
 .faq-a p{padding-bottom:20px;font-size:14px;line-height:1.6;color:var(--text-dim);max-width:640px;}
 
+/* ---------- hero badge (shadcn-style pill eyebrow, themed to Bloom) ---------- */
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(108,79,224,0.4);border-radius:999px;
+  background:rgba(108,79,224,0.08);
+  padding:6px 14px 6px 10px;margin-bottom:22px;
+  font-size:12px;font-weight:600;color:var(--violet-text);
+  letter-spacing:0.01em;
+}
+.hero-badge .dot{
+  width:6px;height:6px;border-radius:50%;flex:none;
+  background:var(--teal);
+}
+
+/* ---------- glow chart card (signal graphs) ---------- */
+.chart-glow{position:relative;}
+.chart-glow::before{
+  content:'';position:absolute;left:50%;top:50%;
+  width:160px;height:90px;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse at center, var(--glow-color,rgba(108,79,224,0.35)), transparent 72%);
+  filter:blur(6px);pointer-events:none;z-index:0;
+}
+.chart-glow svg{position:relative;z-index:1;}
+
 /* ---------- marketing sections ---------- */
 .two-col{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
 .two-col-even{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}

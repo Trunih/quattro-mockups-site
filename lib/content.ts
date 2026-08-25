@@ -35,6 +35,7 @@ export const NAV_LINKS = [
 ];
 
 export const HERO = {
+  badge: "Managing general agency, in formation",
   headingLead: "Comprehensive insurance and risk management for ",
   headingAccent: "long-term care facilities.",
   // quattro-copy-edits.md, "Hero section" — Replace with:
