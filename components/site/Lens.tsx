@@ -1,9 +1,16 @@
 /**
  * The signature device: one glowing signal-lens. Ambient violet bloom behind a
- * layered ring set, with a teal arc for the facet Quattro resolves.
- * Decorative only, so it is hidden from assistive tech.
+ * layered ring set, with a teal arc for the facet Quattro resolves. A slow
+ * breathing pulse on the bloom plus staggered outward-fading rings read as a
+ * live signal being read off the circle, not a static badge. Decorative
+ * only, so it is hidden from assistive tech; the pulse/ping animations are
+ * transform+opacity only (no layout shift) and collapse to a single static
+ * frame under prefers-reduced-motion via the sitewide reduced-motion rule.
  */
 export function Lens({ size = 320 }: { size?: number }) {
+  const ringDiameter = size * 0.475; // matches the visible violet circle's own diameter
+  const ringDelays = [0, 1.2, 2.4];
+
   return (
     <div
       aria-hidden="true"
@@ -15,7 +22,24 @@ export function Lens({ size = 320 }: { size?: number }) {
         width: "100%",
       }}
     >
+      {ringDelays.map((delay) => (
+        <div
+          key={delay}
+          className="lens-ping"
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: ringDiameter,
+            height: ringDiameter,
+            borderRadius: "50%",
+            border: "1px solid rgba(43,196,176,0.55)",
+            animationDelay: `${delay}s`,
+          }}
+        />
+      ))}
       <div
+        className="lens-breathe"
         style={{
           position: "absolute",
           width: size * 0.62,

@@ -365,6 +365,11 @@ table.data td.strong{color:var(--off);font-weight:600;}
   filter:blur(6px);pointer-events:none;z-index:0;
 }
 .chart-glow svg{position:relative;z-index:1;}
+/* Icon-sized charts (fixed-px SVG): shrink the wrapper to the SVG's own
+   rendered box so the centered glow lands behind the icon, not centered
+   on the full-width card it happens to sit inside. Full-width strip
+   charts stay block (their SVG already fills the same width). */
+.chart-glow.is-compact{display:inline-block;}
 
 /* ---------- marketing sections ---------- */
 .two-col{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
@@ -703,6 +708,27 @@ table.data td.strong{color:var(--off);font-weight:600;}
 @media (max-width:600px){
   .doc-row{padding:12px 14px;}
   .policy-actions .btn{flex:1;}
+}
+
+/* ---------- hero lens: breathing glow + signal-ping rings ---------- */
+/* transform + opacity only, so these never trigger layout/reflow. */
+.lens-breathe{
+  animation:lens-breathe 5.5s ease-in-out infinite;
+  transform-origin:center;
+}
+@keyframes lens-breathe{
+  0%,100%{ opacity:0.82; transform:scale(1); }
+  50%{ opacity:1; transform:scale(1.045); }
+}
+.lens-ping{
+  transform:translate(-50%,-50%) scale(1);
+  opacity:0;
+  animation:lens-ping 3.6s cubic-bezier(0.16,0.6,0.35,1) infinite;
+}
+@keyframes lens-ping{
+  0%{ transform:translate(-50%,-50%) scale(1); opacity:0.5; }
+  75%{ opacity:0; }
+  100%{ transform:translate(-50%,-50%) scale(1.8); opacity:0; }
 }
 
 /* ---------- reveal animation ---------- */

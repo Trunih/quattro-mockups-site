@@ -166,7 +166,7 @@ export default function HomePage() {
 
           <div className="signal-card">
             <div className="signal-cell">
-              <div className="chart-glow" style={{ "--glow-color": "rgba(43,196,176,0.35)" } as React.CSSProperties}>
+              <div className="chart-glow is-compact" style={{ "--glow-color": "rgba(43,196,176,0.35)" } as React.CSSProperties}>
                 <svg width="140" height="64" viewBox="0 0 140 64" style={{ marginBottom: 20 }} aria-hidden="true">
                   <defs>
                     <linearGradient id="docLineFill1" x1="0" y1="0" x2="0" y2="1">
@@ -197,7 +197,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="signal-cell">
-              <div className="chart-glow" style={{ "--glow-color": "rgba(108,79,224,0.4)" } as React.CSSProperties}>
+              <div className="chart-glow is-compact" style={{ "--glow-color": "rgba(108,79,224,0.4)" } as React.CSSProperties}>
                 <svg width="140" height="64" viewBox="0 0 140 64" style={{ marginBottom: 20 }} aria-hidden="true">
                   <defs>
                     <linearGradient id="actBarFill1" x1="0" y1="0" x2="0" y2="1">
