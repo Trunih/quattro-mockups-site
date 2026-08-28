@@ -7,6 +7,10 @@ export const runtime = "nodejs";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Recipient for contact-form submissions. Separate from GMAIL_USER, which is
+// only the sending/authenticating Gmail account.
+const CONTACT_RECIPIENT = "lazarevskiilija5@gmail.com";
+
 type ContactPayload = {
   name?: string;
   role?: string;
@@ -106,7 +110,7 @@ export async function POST(request: Request) {
 
     await transporter.sendMail({
       from: gmailUser,
-      to: gmailUser,
+      to: CONTACT_RECIPIENT,
       replyTo: email,
       subject: `New contact form message from ${name}`,
       text: textBody,
