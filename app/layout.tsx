@@ -2,11 +2,11 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 const DIRECTION_CONTRACT = `<!--
-THESIS: one glowing signal-lens is the whole product, seen once in the hero and again as the two facets that read it; the portals are that same lens turned inward on one building at a time.
-OWN-WORLD: true black, ambient violet bloom (soft radial glow, not flat neon fill), a teal secondary reserved for what Quattro resolves, a spectrum hairline standing for "the full signal", pill CTAs and rounded glass cards throughout.
-STORY: a visitor sees the lens, understands it reads two signals, sees proof and program; an agent signs in and moves a building from submission to bound; an underwriter reads the same two signals and decides.
-FIRST VIEWPORT: marketing, centered lens graphic upper-right with headline and pill CTA left on true black; portals, a dense queue under the same spectrum hairline with the primary action pinned top-right.
-FORM: ambient-glow and glass/chrome material from curated references, extended from one Persuade page into Operate surfaces at higher density without changing palette, type, or corner language. Bloom, direction 3 of the 5 reviewed, is the pinned world.
+THESIS: the site reads a building's own signal, warm and grounded rather than clinical; sage and olive stand in for a living record, not a dashboard.
+OWN-WORLD: a warm paper ground, deep olive as the primary voice, sage as the resolving accent, clay used sparingly as a single warm highlight, full pill buttons, generously rounded cards, and major sections raised as soft card-colored panels rather than flush hard-lined grids.
+STORY: a visitor reads the pricing problem, understands the two signals Quattro reads, sees proof and program, then signs in through one shared platform-login entry point into whichever authenticated view their role unlocks.
+FIRST VIEWPORT: a soft blurred sage blob behind the hero, headline with one italic emphasis, pill CTAs, and the signal-lens graphic recolored into the new palette.
+FORM: Piazzolla for display type, IBM Plex Sans for body, IBM Plex Mono for eyebrow and mono labels, carried at the same density into the authenticated Client and Capacity Provider dashboards.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
 -->`;
 
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#07070A",
+  themeColor: "#F7F3E9",
 };
 
 export default function RootLayout({
@@ -44,11 +44,7 @@ export default function RootLayout({
           crossOrigin=""
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Piazzolla:ital,opsz,wght@0,8..30,400;0,8..30,500;0,8..30,600;1,8..30,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
       </head>

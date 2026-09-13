@@ -26,7 +26,7 @@ export default function HomePage() {
       <SiteNav />
 
       {/* ---------------- hero ---------------- */}
-      <section style={{ position: "relative", padding: "100px 0 90px", overflow: "hidden" }}>
+      <section className="hero-blob" style={{ position: "relative", padding: "100px 0 90px", overflow: "hidden" }}>
         <div className="wrap two-col">
           <div>
             <span className="hero-badge">
@@ -35,7 +35,11 @@ export default function HomePage() {
             </span>
             <h1 style={{ fontSize: 50, marginBottom: 22 }}>
               {HERO.headingLead}
-              <span style={{ color: "var(--violet)" }}>{HERO.headingAccent}</span>
+              <span style={{ color: "var(--olive)" }}>
+                {HERO.headingAccent.split(/(care)/).map((part, i) =>
+                  part === "care" ? <em key={i}>{part}</em> : part
+                )}
+              </span>
             </h1>
             <p
               style={{
@@ -103,24 +107,24 @@ export default function HomePage() {
 
           <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
             <svg width="280" height="280" viewBox="0 0 280 280" aria-hidden="true" style={{ maxWidth: "100%", height: "auto" }}>
-              <circle cx="140" cy="140" r="110" fill="none" stroke="rgba(241,240,244,0.1)" strokeWidth="1" />
+              <circle cx="140" cy="140" r="110" fill="none" stroke="rgba(42,46,32,0.12)" strokeWidth="1" />
               <path
                 d="M 30 140 A 110 110 0 0 1 250 140"
                 fill="none"
-                stroke="#E0567A"
+                stroke="#C98A5E"
                 strokeWidth="2"
                 strokeDasharray="3 4"
               />
-              <circle cx="45" cy="176" r="4" fill="#E0567A" />
-              <circle cx="235" cy="176" r="4" fill="#2BC4B0" />
+              <circle cx="45" cy="176" r="4" fill="#C98A5E" />
+              <circle cx="235" cy="176" r="4" fill="#82986E" />
             </svg>
             <div style={{ position: "absolute", left: 0, bottom: 14 }}>
               <div
                 style={{
-                  fontFamily: "var(--font-display), 'Satoshi', sans-serif",
+                  fontFamily: "var(--font-display), 'Piazzolla', serif",
                   fontWeight: 700,
                   fontSize: 22,
-                  color: "#E0567A",
+                  color: "var(--clay-deep)",
                 }}
               >
                 {GAP.capLabel}
@@ -132,7 +136,7 @@ export default function HomePage() {
             <div style={{ position: "absolute", right: 0, bottom: 14, textAlign: "right" }}>
               <div
                 style={{
-                  fontFamily: "var(--font-display), 'Satoshi', sans-serif",
+                  fontFamily: "var(--font-display), 'Piazzolla', serif",
                   fontWeight: 700,
                   fontSize: 22,
                   color: "var(--teal)",
@@ -149,8 +153,9 @@ export default function HomePage() {
       </Reveal>
 
       {/* ---------------- 02 how we underwrite ---------------- */}
-      <Reveal as="section" id="how-we-underwrite" className="section">
+      <Reveal as="section" id="how-we-underwrite" className="section section-alt">
         <div className="wrap">
+        <div className="section-panel">
           <h2 style={{ fontSize: 30, maxWidth: 600, marginBottom: 14 }}>{SIGNALS.heading}</h2>
           <p
             style={{
@@ -166,12 +171,12 @@ export default function HomePage() {
 
           <div className="signal-card">
             <div className="signal-cell">
-              <div className="chart-glow is-compact" style={{ "--glow-color": "rgba(43,196,176,0.35)" } as React.CSSProperties}>
+              <div className="chart-glow is-compact" style={{ "--glow-color": "rgba(130,152,110,0.3)" } as React.CSSProperties}>
                 <svg width="140" height="64" viewBox="0 0 140 64" style={{ marginBottom: 20 }} aria-hidden="true">
                   <defs>
                     <linearGradient id="docLineFill1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#2BC4B0" stopOpacity="0.35" />
-                      <stop offset="100%" stopColor="#2BC4B0" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#82986E" stopOpacity="0.35" />
+                      <stop offset="100%" stopColor="#82986E" stopOpacity="0" />
                     </linearGradient>
                   </defs>
                   <path
@@ -181,11 +186,11 @@ export default function HomePage() {
                   <path
                     d="M4,46 C18,46 22,22 36,22 C50,22 54,40 68,40 C82,40 86,16 100,16 C114,16 118,34 132,34"
                     fill="none"
-                    stroke="#2BC4B0"
+                    stroke="#82986E"
                     strokeWidth="2.25"
                     strokeLinecap="round"
                   />
-                  <circle cx="132" cy="34" r="3.5" fill="#2BC4B0" />
+                  <circle cx="132" cy="34" r="3.5" fill="#82986E" />
                 </svg>
               </div>
               <h3 style={{ fontSize: 20, marginBottom: 12 }}>
@@ -197,12 +202,12 @@ export default function HomePage() {
               </p>
             </div>
             <div className="signal-cell">
-              <div className="chart-glow is-compact" style={{ "--glow-color": "rgba(108,79,224,0.4)" } as React.CSSProperties}>
+              <div className="chart-glow is-compact" style={{ "--glow-color": "rgba(65,80,44,0.22)" } as React.CSSProperties}>
                 <svg width="140" height="64" viewBox="0 0 140 64" style={{ marginBottom: 20 }} aria-hidden="true">
                   <defs>
                     <linearGradient id="actBarFill1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#9B85F5" />
-                      <stop offset="100%" stopColor="#6C4FE0" />
+                      <stop offset="0%" stopColor="#6B7B49" />
+                      <stop offset="100%" stopColor="#41502C" />
                     </linearGradient>
                   </defs>
                   {[
@@ -255,11 +260,12 @@ export default function HomePage() {
 
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 24 }}>
             {SIGNALS.stats.map((s) => (
-              <span key={s} className="tag-pill">
+              <span key={s} className="stat-tile">
                 {s}
               </span>
             ))}
           </div>
+        </div>
         </div>
       </Reveal>
 
@@ -319,8 +325,9 @@ export default function HomePage() {
       </Reveal>
 
       {/* ---------------- coverage ---------------- */}
-      <Reveal as="section" id="coverage" className="section section-alt">
+      <Reveal as="section" id="coverage" className="section">
         <div className="wrap">
+        <div className="section-panel">
           <h2 style={{ fontSize: 30, maxWidth: 600, marginBottom: 8 }}>{COVERAGE.heading}</h2>
           <p
             style={{
@@ -348,11 +355,13 @@ export default function HomePage() {
             {COVERAGE.note}
           </p>
         </div>
+        </div>
       </Reveal>
 
       {/* ---------------- portal teaser ---------------- */}
-      <Reveal as="section" className="section">
+      <Reveal as="section" className="section section-alt">
         <div className="wrap">
+        <div className="section-panel">
           <h2 style={{ fontSize: 26, maxWidth: 600, marginBottom: 8 }}>{PORTAL_TEASER.heading}</h2>
           <p
             style={{
@@ -374,12 +383,12 @@ export default function HomePage() {
                 <div className="tag" style={{ color: "var(--teal)", marginBottom: 10 }}>
                   Documentation signal
                 </div>
-                <div className="chart-glow" style={{ "--glow-color": "rgba(43,196,176,0.3)" } as React.CSSProperties}>
+                <div className="chart-glow" style={{ "--glow-color": "rgba(130,152,110,0.25)" } as React.CSSProperties}>
                   <svg width="100%" height="46" viewBox="0 0 260 46" aria-hidden="true">
                     <defs>
                       <linearGradient id="docLineFill2" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#2BC4B0" stopOpacity="0.3" />
-                        <stop offset="100%" stopColor="#2BC4B0" stopOpacity="0" />
+                        <stop offset="0%" stopColor="#82986E" stopOpacity="0.3" />
+                        <stop offset="100%" stopColor="#82986E" stopOpacity="0" />
                       </linearGradient>
                     </defs>
                     <path
@@ -389,11 +398,11 @@ export default function HomePage() {
                     <path
                       d="M6,32 C36,32 42,14 72,14 C102,14 108,34 138,34 C168,34 174,10 204,10 C224,10 236,22 254,24"
                       fill="none"
-                      stroke="#2BC4B0"
+                      stroke="#82986E"
                       strokeWidth="2"
                       strokeLinecap="round"
                     />
-                    <circle cx="254" cy="24" r="3" fill="#2BC4B0" />
+                    <circle cx="254" cy="24" r="3" fill="#82986E" />
                   </svg>
                 </div>
               </div>
@@ -401,12 +410,12 @@ export default function HomePage() {
                 <div className="tag" style={{ color: "var(--violet-text)", marginBottom: 10 }}>
                   Activity signal
                 </div>
-                <div className="chart-glow" style={{ "--glow-color": "rgba(108,79,224,0.35)" } as React.CSSProperties}>
+                <div className="chart-glow" style={{ "--glow-color": "rgba(65,80,44,0.2)" } as React.CSSProperties}>
                   <svg width="100%" height="46" viewBox="0 0 260 46" aria-hidden="true">
                     <defs>
                       <linearGradient id="actBarFill2" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#9B85F5" />
-                        <stop offset="100%" stopColor="#6C4FE0" />
+                        <stop offset="0%" stopColor="#6B7B49" />
+                        <stop offset="100%" stopColor="#41502C" />
                       </linearGradient>
                     </defs>
                     {[
@@ -429,6 +438,7 @@ export default function HomePage() {
               <div className="portal-alert">{PORTAL_TEASER.alert}</div>
             </div>
           </div>
+        </div>
         </div>
       </Reveal>
 

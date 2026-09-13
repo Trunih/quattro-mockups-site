@@ -29,3 +29,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# raw uploaded reference files, not part of the built app
+Claude outputs/
