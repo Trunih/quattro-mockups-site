@@ -12,7 +12,14 @@ create table if not exists public.facilities (
   state text not null,
   type text not null,
   beds integer not null,
-  risk_tier text not null check (risk_tier in ('Low', 'Moderate', 'Elevated'))
+  risk_tier text not null check (risk_tier in ('Low', 'Moderate', 'Elevated')),
+  -- True only for the synthetic capacity-provider book facilities seeded by
+  -- scripts/seed-capacity-facilities.ts (ids "F1000".."F1069"). False for
+  -- individual clients' own facilities (e.g. fac-1..fac-4). This is what
+  -- facilities_select_capacity_provider below scopes on, so a Capacity
+  -- Provider account can read the whole synthetic book but can never open
+  -- an individual client's own facility dashboard.
+  in_capacity_provider_book boolean not null default false
 );
 
 insert into public.facilities (id, name, state, type, beds, risk_tier) values
@@ -21,6 +28,10 @@ insert into public.facilities (id, name, state, type, beds, risk_tier) values
   ('fac-3', 'Cedar Ridge Memory Care', 'FL', 'Memory Care', 60, 'Elevated'),
   ('fac-4', 'Heritage Oaks', 'NC', 'CCRC', 200, 'Moderate')
 on conflict (id) do nothing;
+
+-- Re-run migration safety: add the column if this schema was already applied
+-- before the capacity-provider book existed.
+alter table public.facilities add column if not exists in_capacity_provider_book boolean not null default false;
 
 -- ---------------------------------------------------------------------------
 -- Profiles: one row per authenticated user, holding their role. The id is
@@ -77,6 +88,24 @@ create policy "facilities_select_own" on public.facilities
     exists (
       select 1 from public.user_facilities uf
       where uf.facility_id = facilities.id and uf.user_id = auth.uid()
+    )
+  );
+
+-- Capacity Provider users aren't tied to specific facilities via
+-- user_facilities — they need read access across the whole book, not one
+-- client's own facilities. Scoped to in_capacity_provider_book so this
+-- can't be used to reach an individual client's facility (e.g. fac-1..4):
+-- this is a separate, additive policy (Postgres OR's multiple permissive
+-- policies together for the same command), so facilities_select_own above
+-- is completely unchanged for client users. Read-only: there is
+-- deliberately no insert/update/delete policy for capacity_provider here.
+drop policy if exists "facilities_select_capacity_provider" on public.facilities;
+create policy "facilities_select_capacity_provider" on public.facilities
+  for select using (
+    facilities.in_capacity_provider_book
+    and exists (
+      select 1 from public.profiles p
+      where p.id = auth.uid() and p.role = 'capacity_provider'
     )
   );
 

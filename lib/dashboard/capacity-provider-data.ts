@@ -20,6 +20,7 @@ type PortfolioFacility = {
 type Claim = {
   ref: string;
   facility: string;
+  facilityId: string;
   state: string;
   dateOfLoss: Date;
   cause: string;
@@ -29,6 +30,7 @@ type Claim = {
 
 type PortfolioAlert = {
   facility: string;
+  facilityId: string;
   policy: string;
   type: string;
   source: string;
@@ -109,6 +111,7 @@ export function buildCapacityProviderData(today: Date) {
     return {
       ref: "CLM-" + (2026000 + idx),
       facility: f.name,
+      facilityId: f.id,
       state: f.cityState,
       dateOfLoss: dloss,
       cause: pick(CLAIM_CAUSES),
@@ -129,6 +132,7 @@ export function buildCapacityProviderData(today: Date) {
     const status = severity === "High" && statusRoll < 0.3 ? "Escalated" : statusRoll < 0.55 ? "Unacknowledged" : "Acknowledged";
     alerts.push({
       facility: f.name,
+      facilityId: f.id,
       policy: "QTR-GL-2026-" + (30000 + Math.floor(rand() * 9999)),
       type: at.label,
       source: at.source,

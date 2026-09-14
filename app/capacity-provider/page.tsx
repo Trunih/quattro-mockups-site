@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BarChart, HBarChart } from "@/lib/dashboard/charts";
 import { buildCapacityProviderData } from "@/lib/dashboard/capacity-provider-data";
 
@@ -213,7 +214,11 @@ export default function CapacityProviderPage() {
                 const statClass = a.status === "Escalated" ? "status-escalated" : a.status === "Unacknowledged" ? "status-unack" : "status-ack";
                 return (
                   <tr key={i}>
-                    <td>{a.facility}</td>
+                    <td>
+                      <Link href={`/capacity-provider/facility/${a.facilityId}`} className="facility-link">
+                        {a.facility}
+                      </Link>
+                    </td>
                     <td>{a.policy}</td>
                     <td>{a.type}</td>
                     <td>{a.source}</td>
@@ -268,7 +273,11 @@ export default function CapacityProviderPage() {
                   const sevClass = w.f.riskTier === "Elevated" ? "sev-high" : w.f.riskTier === "Moderate" ? "sev-medium" : "sev-low";
                   return (
                     <tr key={i}>
-                      <td>{w.f.name}</td>
+                      <td>
+                        <Link href={`/capacity-provider/facility/${w.f.id}`} className="facility-link">
+                          {w.f.name}
+                        </Link>
+                      </td>
                       <td>{w.f.cityState}</td>
                       <td>
                         <span className={`status-pill ${sevClass}`}>{w.f.riskTier}</span>
@@ -337,7 +346,11 @@ export default function CapacityProviderPage() {
                       : "Renew as submitted";
                   return (
                     <tr key={i}>
-                      <td>{f.name}</td>
+                      <td>
+                        <Link href={`/capacity-provider/facility/${f.id}`} className="facility-link">
+                          {f.name}
+                        </Link>
+                      </td>
                       <td>{f.cityState}</td>
                       <td>{fmtMoney(f.premium)}</td>
                       <td>
@@ -374,7 +387,11 @@ export default function CapacityProviderPage() {
                 .map((c, i) => (
                   <tr key={i}>
                     <td>{c.ref}</td>
-                    <td>{c.facility}</td>
+                    <td>
+                      <Link href={`/capacity-provider/facility/${c.facilityId}`} className="facility-link">
+                        {c.facility}
+                      </Link>
+                    </td>
                     <td>{fmtDate(c.dateOfLoss)}</td>
                     <td>{c.cause}</td>
                     <td>{fmtMoney(c.reserve)}</td>

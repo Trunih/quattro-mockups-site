@@ -2,9 +2,9 @@
 
 import { useMemo, useState, useTransition } from "react";
 import { BarChart, HBarChart } from "@/lib/dashboard/charts";
-import { WEEK_LABELS, type Alert, type Violation } from "@/lib/dashboard/client-data";
+import { WEEK_LABELS, generateIssues, type Alert, type Violation } from "@/lib/dashboard/client-data";
 import {
-  ISSUE_TEMPLATES,
+  CLIENT_DASHBOARD_COPY,
   NEWS_REGULATORY,
   NEWS_RISKMGMT,
   ROUTING_ALERT_TYPES,
@@ -30,13 +30,24 @@ export function ClientDashboard({
   alertHistory,
   violations: initialViolations,
   routingPreferences,
+  readOnly = false,
 }: {
   facilities: Facility[];
   alerts: Alert[];
   alertHistory: Record<string, number[]>;
   violations: Violation[];
   routingPreferences: RoutingPrefRow[];
+  /**
+   * True for the Capacity Provider's read-only facility drill-down (see
+   * app/capacity-provider/facility/[id]/page.tsx): hides acknowledge/
+   * resolve/mark-addressed actions, the routing-preferences editor, and the
+   * industry-news section, and swaps in third-person copy. Client users
+   * always get readOnly=false — this dashboard's behavior for them is
+   * unchanged.
+   */
+  readOnly?: boolean;
 }) {
+  const copy = readOnly ? CLIENT_DASHBOARD_COPY.capacityProviderReadOnly : CLIENT_DASHBOARD_COPY.client;
   const [scope, setScope] = useState<string>("all");
   const [alerts, setAlerts] = useState(initialAlerts);
   const [violations, setViolations] = useState(initialViolations);
@@ -59,7 +70,11 @@ export function ClientDashboard({
     ["Elevated-risk facilities", scopedFacilities.filter((f) => f.riskTier === "Elevated").length, scopedFacilities.some((f) => f.riskTier === "Elevated")],
   ];
 
-  const title = scope === "all" ? "Your risk and safety dashboard" : scopedFacilities[0]?.name ?? "Your risk and safety dashboard";
+  const title = readOnly
+    ? facilities[0]?.name ?? "Facility dashboard"
+    : scope === "all"
+    ? "Your risk and safety dashboard"
+    : scopedFacilities[0]?.name ?? "Your risk and safety dashboard";
 
   function acknowledgeAlert(idx: number) {
     setAlerts((prev) => {
@@ -152,12 +167,9 @@ export function ClientDashboard({
       <div className="page-head" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 16 }}>
         <div>
           <h1>{title}</h1>
-          <p>
-            Real-time signal from the operating data shared under your Quattro policy, plus regulatory
-            and industry context relevant to your operation.
-          </p>
+          <p>{copy.subtitle}</p>
         </div>
-        {facilities.length > 0 && (
+        {!readOnly && facilities.length > 0 && (
           <div className="field" style={{ maxWidth: 280, marginBottom: 0 }}>
             <label htmlFor="facility-switcher" style={{ marginBottom: 6 }}>
               Facility
@@ -196,11 +208,7 @@ export function ClientDashboard({
 
           <section>
             <div className="section-label">Real-time alerts</div>
-            <p className="section-sub">
-              Generated from continuous review of the same signals read at your facility under your
-              data-sharing consent. Acknowledge an alert once your team is aware of it; mark it
-              resolved once it&apos;s been addressed.
-            </p>
+            <p className="section-sub">{copy.alertsSub}</p>
             <div className="risk-table-wrap">
               <table className="risk-table">
                 <thead>
@@ -212,13 +220,13 @@ export function ClientDashboard({
                     <th>Status</th>
                     <th>Time open</th>
                     <th>Response time</th>
-                    <th></th>
+                    {!readOnly && <th></th>}
                   </tr>
                 </thead>
                 <tbody>
                   {scopedAlerts.length === 0 ? (
                     <tr>
-                      <td colSpan={8} style={{ textAlign: "center", color: "var(--ink-soft)", fontStyle: "italic" }}>
+                      <td colSpan={readOnly ? 7 : 8} style={{ textAlign: "center", color: "var(--ink-soft)", fontStyle: "italic" }}>
                         No open alerts for this facility.
                       </td>
                     </tr>
@@ -239,21 +247,23 @@ export function ClientDashboard({
                           </td>
                           <td>{a.hoursOpen} hrs</td>
                           <td>{a.responseMin !== null ? `${a.responseMin} min` : "—"}</td>
-                          <td>
-                            {a.status === "Unacknowledged" ? (
-                              <button className="row-action-btn" onClick={() => acknowledgeAlert(idx)}>
-                                Acknowledge
-                              </button>
-                            ) : a.status === "Acknowledged" ? (
-                              <button className="row-action-btn" onClick={() => resolveAlert(idx)}>
-                                Mark resolved
-                              </button>
-                            ) : (
-                              <button className="row-action-btn" disabled>
-                                Escalated
-                              </button>
-                            )}
-                          </td>
+                          {!readOnly && (
+                            <td>
+                              {a.status === "Unacknowledged" ? (
+                                <button className="row-action-btn" onClick={() => acknowledgeAlert(idx)}>
+                                  Acknowledge
+                                </button>
+                              ) : a.status === "Acknowledged" ? (
+                                <button className="row-action-btn" onClick={() => resolveAlert(idx)}>
+                                  Mark resolved
+                                </button>
+                              ) : (
+                                <button className="row-action-btn" disabled>
+                                  Escalated
+                                </button>
+                              )}
+                            </td>
+                          )}
                         </tr>
                       );
                     })
@@ -287,7 +297,7 @@ export function ClientDashboard({
               <div className="chart-block">
                 <div className="chart-title">Response time distribution</div>
                 <BarChart data={buckets} color="#82986E" width={520} height={150} />
-                <p className="chart-footnote">Your policy standard is to respond promptly to every flagged alert.</p>
+                <p className="chart-footnote">{copy.respTimeFootnote}</p>
               </div>
               {compareData.length > 0 && (
                 <div className="chart-block">
@@ -300,18 +310,15 @@ export function ClientDashboard({
 
           <section>
             <div className="section-label">Key issues observed, trailing 90 days</div>
-            <p className="section-sub">
-              A summary of what our review of your facility&apos;s own data has found, in plain terms,
-              with a recommended next step for each.
-            </p>
+            <p className="section-sub">{copy.issuesSub}</p>
             <ul className="issue-list">
-              {scopedFacilities.flatMap((f) => ISSUE_TEMPLATES[f.id] ?? []).length === 0 ? (
+              {scopedFacilities.flatMap((f) => generateIssues(f)).length === 0 ? (
                 <li>
                   <div className="issue-detail">No notable findings for this facility in the trailing 90 days.</div>
                 </li>
               ) : (
                 scopedFacilities.flatMap((f) =>
-                  (ISSUE_TEMPLATES[f.id] ?? []).map((iss, i) => (
+                  generateIssues(f).map((iss, i) => (
                     <li key={f.id + i}>
                       <div className="issue-title">
                         {scopedFacilities.length > 1 ? `${f.name}: ` : ""}
@@ -328,10 +335,7 @@ export function ClientDashboard({
 
           <section>
             <div className="section-label">Flagged violations and citations</div>
-            <p className="section-sub">
-              State survey citations and internal policy violations that need a documented response.
-              Overdue items are the ones most likely to matter at your next renewal.
-            </p>
+            <p className="section-sub">{copy.violationsSub}</p>
             <div className="risk-table-wrap">
               <table className="risk-table">
                 <thead>
@@ -341,13 +345,13 @@ export function ClientDashboard({
                     <th>Description</th>
                     <th>Due date</th>
                     <th>Status</th>
-                    <th></th>
+                    {!readOnly && <th></th>}
                   </tr>
                 </thead>
                 <tbody>
                   {scopedViolations.length === 0 ? (
                     <tr>
-                      <td colSpan={6} style={{ textAlign: "center", color: "var(--ink-soft)", fontStyle: "italic" }}>
+                      <td colSpan={readOnly ? 5 : 6} style={{ textAlign: "center", color: "var(--ink-soft)", fontStyle: "italic" }}>
                         No open violations for this facility.
                       </td>
                     </tr>
@@ -363,17 +367,19 @@ export function ClientDashboard({
                           <td>
                             <span className={`status-pill ${statClass}`}>{v.status}</span>
                           </td>
-                          <td>
-                            {v.status === "Addressed" ? (
-                              <button className="row-action-btn" disabled>
-                                Addressed
-                              </button>
-                            ) : (
-                              <button className="row-action-btn" onClick={() => markAddressed(idx)}>
-                                Mark addressed
-                              </button>
-                            )}
-                          </td>
+                          {!readOnly && (
+                            <td>
+                              {v.status === "Addressed" ? (
+                                <button className="row-action-btn" disabled>
+                                  Addressed
+                                </button>
+                              ) : (
+                                <button className="row-action-btn" onClick={() => markAddressed(idx)}>
+                                  Mark addressed
+                                </button>
+                              )}
+                            </td>
+                          )}
                         </tr>
                       );
                     })
@@ -383,96 +389,100 @@ export function ClientDashboard({
             </div>
           </section>
 
-          <section>
-            <div className="section-label">Alert routing preferences</div>
-            <p className="section-sub">
-              Choose who gets notified for each type of alert at this facility. You can send different
-              alert types to different people, and update this at any time.
-            </p>
-            <div className="field" style={{ maxWidth: 360 }}>
-              <label htmlFor="routing-facility-select">Configuring alerts for</label>
-              <select
-                id="routing-facility-select"
-                value={routingFacilityId}
-                onChange={(e) => {
-                  setRoutingFacilityId(e.target.value);
-                  setSaveState("idle");
-                }}
-              >
-                {facilities.map((f) => (
-                  <option key={f.id} value={f.id}>
-                    {f.name}
-                  </option>
+          {!readOnly && (
+            <section>
+              <div className="section-label">Alert routing preferences</div>
+              <p className="section-sub">
+                Choose who gets notified for each type of alert at this facility. You can send different
+                alert types to different people, and update this at any time.
+              </p>
+              <div className="field" style={{ maxWidth: 360 }}>
+                <label htmlFor="routing-facility-select">Configuring alerts for</label>
+                <select
+                  id="routing-facility-select"
+                  value={routingFacilityId}
+                  onChange={(e) => {
+                    setRoutingFacilityId(e.target.value);
+                    setSaveState("idle");
+                  }}
+                >
+                  {facilities.map((f) => (
+                    <option key={f.id} value={f.id}>
+                      {f.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="routing-table-wrap">
+                {(routingRows[routingFacilityId] ?? []).map((row, i) => (
+                  <div className="routing-row" key={row.alertType}>
+                    <div className="rr-label">{row.alertType}</div>
+                    <div className="field">
+                      <label>Recipient name</label>
+                      <input type="text" value={row.contactName} onChange={(e) => updateRoutingField(i, "contactName", e.target.value)} />
+                    </div>
+                    <div className="field">
+                      <label>Phone number</label>
+                      <input type="text" value={row.contactPhone} onChange={(e) => updateRoutingField(i, "contactPhone", e.target.value)} />
+                    </div>
+                  </div>
                 ))}
-              </select>
-            </div>
-            <div className="routing-table-wrap">
-              {(routingRows[routingFacilityId] ?? []).map((row, i) => (
-                <div className="routing-row" key={row.alertType}>
-                  <div className="rr-label">{row.alertType}</div>
-                  <div className="field">
-                    <label>Recipient name</label>
-                    <input type="text" value={row.contactName} onChange={(e) => updateRoutingField(i, "contactName", e.target.value)} />
-                  </div>
-                  <div className="field">
-                    <label>Phone number</label>
-                    <input type="text" value={row.contactPhone} onChange={(e) => updateRoutingField(i, "contactPhone", e.target.value)} />
-                  </div>
+              </div>
+              <button className="btn btn-violet" onClick={onSaveRouting} disabled={isSaving}>
+                {isSaving ? "Saving…" : "Save routing preferences"}
+              </button>
+              {saveState === "saved" && (
+                <div className="banner banner-teal save-banner show" style={{ marginTop: 14, maxWidth: 520 }}>
+                  Routing preferences saved. Future alerts for this facility will go to the contacts above.
                 </div>
-              ))}
-            </div>
-            <button className="btn btn-violet" onClick={onSaveRouting} disabled={isSaving}>
-              {isSaving ? "Saving…" : "Save routing preferences"}
-            </button>
-            {saveState === "saved" && (
-              <div className="banner banner-teal save-banner show" style={{ marginTop: 14, maxWidth: 520 }}>
-                Routing preferences saved. Future alerts for this facility will go to the contacts above.
-              </div>
-            )}
-            {saveState === "error" && (
-              <div className="banner banner-danger save-banner show" style={{ marginTop: 14, maxWidth: 520 }}>
-                Couldn&apos;t save routing preferences. Please try again.
-              </div>
-            )}
-          </section>
+              )}
+              {saveState === "error" && (
+                <div className="banner banner-danger save-banner show" style={{ marginTop: 14, maxWidth: 520 }}>
+                  Couldn&apos;t save routing preferences. Please try again.
+                </div>
+              )}
+            </section>
+          )}
 
-          <section>
-            <div className="section-label">Industry news and trends</div>
-            <p className="section-sub">
-              Regulatory, litigation, and risk management news relevant to long-term care and senior
-              living operators, curated for context, not investment or legal advice.
-            </p>
-            <div className="news-grid">
-              <div>
-                <div className="news-col-label">Regulatory and litigation</div>
-                {NEWS_REGULATORY.map((n) => (
-                  <div className="news-item" key={n.url}>
-                    <a href={n.url} target="_blank" rel="noopener noreferrer">
-                      {n.title}
-                    </a>
-                    <div className="news-meta">
-                      {n.source} · {n.date}
+          {!readOnly && (
+            <section>
+              <div className="section-label">Industry news and trends</div>
+              <p className="section-sub">
+                Regulatory, litigation, and risk management news relevant to long-term care and senior
+                living operators, curated for context, not investment or legal advice.
+              </p>
+              <div className="news-grid">
+                <div>
+                  <div className="news-col-label">Regulatory and litigation</div>
+                  {NEWS_REGULATORY.map((n) => (
+                    <div className="news-item" key={n.url}>
+                      <a href={n.url} target="_blank" rel="noopener noreferrer">
+                        {n.title}
+                      </a>
+                      <div className="news-meta">
+                        {n.source} · {n.date}
+                      </div>
+                      <div className="news-blurb">{n.blurb}</div>
                     </div>
-                    <div className="news-blurb">{n.blurb}</div>
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div className="news-col-label">Risk management and technology</div>
-                {NEWS_RISKMGMT.map((n) => (
-                  <div className="news-item" key={n.url}>
-                    <a href={n.url} target="_blank" rel="noopener noreferrer">
-                      {n.title}
-                    </a>
-                    <div className="news-meta">
-                      {n.source} · {n.date}
+                  ))}
+                </div>
+                <div>
+                  <div className="news-col-label">Risk management and technology</div>
+                  {NEWS_RISKMGMT.map((n) => (
+                    <div className="news-item" key={n.url}>
+                      <a href={n.url} target="_blank" rel="noopener noreferrer">
+                        {n.title}
+                      </a>
+                      <div className="news-meta">
+                        {n.source} · {n.date}
+                      </div>
+                      <div className="news-blurb">{n.blurb}</div>
                     </div>
-                    <div className="news-blurb">{n.blurb}</div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
         </>
       )}
     </>

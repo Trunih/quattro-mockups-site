@@ -133,6 +133,94 @@ export const ISSUE_TEMPLATES: Record<
   ],
 };
 
+/**
+ * Generic issue narratives, generalized from the four hand-authored
+ * facilities above. Used by client-data.ts's generateIssues() to produce
+ * deterministic "Key issues observed" content for a facility that has no
+ * hand-authored ISSUE_TEMPLATES entry — namely the capacity-provider book
+ * facilities reached through the Capacity Provider's read-only
+ * facility-level drill-down, so that view isn't stuck showing "no notable
+ * findings" for every facility.
+ */
+export const ISSUE_POOL: { title: string; detail: string; action: string }[] = [
+  {
+    title: "Medication protocol flag",
+    detail:
+      "A documentation review flagged an elevated rate of a monitored medication category, without a fully documented clinical rationale on file for every resident on it.",
+    action: "Recommend medical director review of current medication protocols.",
+  },
+  {
+    title: "Staff response time trending up",
+    detail: "Response time to flagged events has been trending in the wrong direction this period.",
+    action: "Recommend reviewing overnight shift staffing levels.",
+  },
+  {
+    title: "Documentation gap on a change in condition",
+    detail: "One resident's care plan was not updated until more than two weeks after a documented mobility change.",
+    action: "Recommend staff refresher on change-in-condition documentation timing.",
+  },
+  {
+    title: "Elevated elopement-related activity",
+    detail:
+      "Elopement-related activity concentrated near a unit exit was elevated this period, including at least one alarm response that ran longer than usual.",
+    action: "Recommend confirming door-lock and alarm maintenance schedule.",
+  },
+  {
+    title: "Fall-risk pattern flagged",
+    detail: "A fall was not documented in the medical record or reported through the facility's incident process.",
+    action: "Recommend staff retraining on post-fall notification and documentation.",
+  },
+  {
+    title: "Staffing coverage gap, overnight shift",
+    detail: "A window with no staff observed in a common hallway during the overnight shift was flagged on more than one occasion.",
+    action: "Recommend reviewing overnight staffing schedule and call-light coverage.",
+  },
+  {
+    title: "Coverage gap flagged",
+    detail: "A brief gap in coverage during shift change was flagged for facility follow-up.",
+    action: "Recommend confirming shift-change coverage procedure.",
+  },
+  {
+    title: "Consistent staff presence observed",
+    detail: "No irregular activity or coverage gaps detected in common areas over the trailing 90 days.",
+    action: "No action needed this period.",
+  },
+  {
+    title: "Medication administration timing",
+    detail: "Medication administrations recorded within the scheduled window remain above the program average.",
+    action: "No action needed; continue current process.",
+  },
+];
+
+/**
+ * Copy for ClientDashboard, split between the interactive Client view and
+ * the read-only Capacity Provider facility drill-down (see
+ * app/capacity-provider/facility/[id]/page.tsx) — second person "your"
+ * phrasing only makes sense when the viewer is the facility's own operator.
+ */
+export const CLIENT_DASHBOARD_COPY = {
+  client: {
+    subtitle:
+      "Real-time signal from the operating data shared under your Quattro policy, plus regulatory and industry context relevant to your operation.",
+    alertsSub:
+      "Generated from continuous review of the same signals read at your facility under your data-sharing consent. Acknowledge an alert once your team is aware of it; mark it resolved once it's been addressed.",
+    issuesSub: "A summary of what our review of your facility's own data has found, in plain terms, with a recommended next step for each.",
+    violationsSub:
+      "State survey citations and internal policy violations that need a documented response. Overdue items are the ones most likely to matter at your next renewal.",
+    respTimeFootnote: "Your policy standard is to respond promptly to every flagged alert.",
+  },
+  capacityProviderReadOnly: {
+    subtitle:
+      "Facility-level detail from the same signals reviewed at this facility, rolled up here for portfolio oversight. Acknowledging alerts and routing preferences are managed by the facility's own team, not shown in this view.",
+    alertsSub:
+      "Generated from continuous review of the same signals read at this facility under its data-sharing consent, shown here read-only for portfolio-level oversight.",
+    issuesSub: "A summary of what our review of this facility's own data has found, in plain terms, with a recommended next step for each.",
+    violationsSub:
+      "State survey citations and internal policy violations that need a documented response. Overdue items are the ones most likely to matter at the next renewal.",
+    respTimeFootnote: "This facility's policy standard is to respond promptly to every flagged alert.",
+  },
+} as const;
+
 export const ROUTING_DEFAULTS: Record<string, { type: string; name: string; phone: string }[]> = {};
 for (const facilityId of ["fac-1", "fac-2", "fac-3", "fac-4"]) {
   ROUTING_DEFAULTS[facilityId] = [

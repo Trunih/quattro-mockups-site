@@ -1,5 +1,5 @@
 import { seededRandom } from "./seeded-random";
-import { ALERT_TYPES, VIOLATION_TEMPLATES, type Facility } from "./client-content";
+import { ALERT_TYPES, ISSUE_POOL, ISSUE_TEMPLATES, VIOLATION_TEMPLATES, type Facility } from "./client-content";
 
 export type Alert = {
   facilityId: string;
@@ -86,6 +86,30 @@ export function generateViolations(facilities: Facility[], today: Date): Violati
     }
   });
   return violations;
+}
+
+/**
+ * "Key issues observed" content for one facility. Returns the hand-authored
+ * ISSUE_TEMPLATES entry when one exists (fac-1..fac-4, unchanged from the
+ * original Client dashboard). For any other facility — i.e. a
+ * capacity-provider book facility reached via the drill-down, which has no
+ * hand-authored entry — deterministically picks from ISSUE_POOL, seeded by
+ * the facility's own id so it's stable across reloads.
+ */
+export function generateIssues(facility: Facility): { title: string; detail: string; action: string }[] {
+  if (ISSUE_TEMPLATES[facility.id]) return ISSUE_TEMPLATES[facility.id];
+
+  const rand = seededRandom("quattro-client-issues-" + facility.id);
+  const tierBoost = facility.riskTier === "Elevated" ? 2 : facility.riskTier === "Moderate" ? 1 : 0;
+  if (tierBoost === 0 && rand() < 0.35) return [];
+
+  const count = 1 + Math.floor(rand() * 2) + (tierBoost > 1 ? 1 : 0);
+  const pool = [...ISSUE_POOL];
+  const picked: typeof ISSUE_POOL = [];
+  for (let i = 0; i < count && pool.length; i++) {
+    picked.push(pool.splice(Math.floor(rand() * pool.length), 1)[0]);
+  }
+  return picked;
 }
 
 export { WEEK_LABELS };

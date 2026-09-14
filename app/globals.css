@@ -540,6 +540,11 @@ input[aria-invalid="true"],select[aria-invalid="true"],textarea[aria-invalid="tr
 .page-head h1{font-size:30px;}
 .page-head p{font-size:15px;color:var(--ink-soft);margin-top:6px;max-width:760px;}
 .as-of{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);margin-top:6px;}
+.back-link{
+  font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;
+  color:var(--ink-soft);display:inline-block;margin-bottom:20px;
+}
+.back-link:hover{color:var(--olive);}
 
 .section-label{
   font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;
@@ -582,6 +587,8 @@ input[aria-invalid="true"],select[aria-invalid="true"],textarea[aria-invalid="tr
 }
 .risk-table td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink);vertical-align:top;}
 .risk-table tr:last-child td{border-bottom:none;}
+.facility-link{color:var(--olive-ink);font-weight:600;}
+.facility-link:hover{color:var(--olive);text-decoration:underline;}
 
 .status-pill{
   font-family:var(--font-mono);font-size:11px;padding:4px 9px;border-radius:6px;
